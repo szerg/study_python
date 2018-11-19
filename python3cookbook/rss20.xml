@@ -1,0 +1,1731 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<channel>
+	<title>Planet Python</title>
+	<link>http://planetpython.org/</link>
+	<language>en</language>
+	<description>Planet Python - http://planetpython.org/</description>
+
+<item>
+	<title>Stack Abuse: Beginner's Tutorial on the Pandas Python Library</title>
+	<guid>https://stackabuse.com/beginners-tutorial-on-the-pandas-python-library/</guid>
+	<link>https://stackabuse.com/beginners-tutorial-on-the-pandas-python-library/</link>
+	<description>&lt;p&gt;Pandas is an open source Python package that provides numerous tools for data analysis. The package comes with several data structures that can be used for many different data manipulation tasks. It also has a variety of methods that can be invoked for data analysis, which comes in handy when working on data science and machine learning problems in Python.&lt;/p&gt;
+
+&lt;h3 id=&quot;advantagesofusingpandas&quot;&gt;Advantages of Using Pandas&lt;/h3&gt;
+
+&lt;p&gt;The following are some of the advantages of the &lt;a rel=&quot;nofollow&quot; target=&quot;_blank&quot; href=&quot;https://pandas.pydata.org/&quot;&gt;Pandas library&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;It can present data in a way that is suitable for data analysis via its &lt;code&gt;Series&lt;/code&gt; and &lt;code&gt;DataFrame&lt;/code&gt; data structures.  &lt;/li&gt;
+&lt;li&gt;The package contains multiple methods for convenient data filtering.  &lt;/li&gt;
+&lt;li&gt;Pandas has a variety of utilities to perform Input/Output operations in a seamless manner. It can read data from a variety of formats such as CSV, TSV, MS Excel, etc.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;installingpandas&quot;&gt;Installing Pandas&lt;/h3&gt;
+
+&lt;p&gt;The standard Python distribution does not come with the Pandas module. To use this 3rd party module, you must install it.&lt;/p&gt;
+
+&lt;p&gt;The nice thing about Python is that it comes bundled with a tool called &lt;em&gt;pip&lt;/em&gt; that can be used for the installation of Pandas. The do the installation, you need to run the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;$ pip install pandas
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you have installed &lt;a rel=&quot;nofollow&quot; target=&quot;_blank&quot; href=&quot;https://anaconda.org/anaconda/python&quot;&gt;Anaconda&lt;/a&gt; on your system, just run the following command to install Pandas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;$ conda install pandas
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is highly recommended that you install the latest version of the Pandas package. However, if you want to install an older version you can specify it by running the &lt;code&gt;conda install&lt;/code&gt; command as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;$ conda install pandas=0.23.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;pandasdatastructures&quot;&gt;Pandas Data Structures&lt;/h3&gt;
+
+&lt;p&gt;Pandas has two main data structures for data storage:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Series  &lt;/li&gt;
+&lt;li&gt;DataFrame&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;series&quot;&gt;Series&lt;/h4&gt;
+
+&lt;p&gt;A series is similar to a one-dimensional array. It can store data of any type. The values of a Pandas &lt;code&gt;Series&lt;/code&gt; are mutable but the size of a &lt;code&gt;Series&lt;/code&gt; is immutable and cannot be changed. &lt;/p&gt;
+
+&lt;p&gt;The first element in the series is assigned the index &lt;code&gt;0&lt;/code&gt;, while the last element is at index &lt;code&gt;N-1&lt;/code&gt;, where &lt;code&gt;N&lt;/code&gt; is the total number of elements in the series. &lt;/p&gt;
+
+&lt;p&gt;To create a Pandas &lt;code&gt;Series&lt;/code&gt;, we must first import the Pandas package via the Python's &lt;code&gt;import&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To create the &lt;code&gt;Series&lt;/code&gt;, we invoke the &lt;code&gt;pd.Series()&lt;/code&gt; method and pass an array, as shown below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;series1 = pd.Series([1,2,3,4])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, run the &lt;code&gt;print&lt;/code&gt; statement to display the contents of the &lt;code&gt;Series&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(series1)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0    1  
+1    2  
+2    3  
+3    4  
+dtype: int64  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see that we have two columns, the first one with numbers starting from index &lt;code&gt;0&lt;/code&gt; and the second one with the elements that were added to the series.&lt;/p&gt;
+
+&lt;p&gt;The first column denotes the indexes for the elements.&lt;/p&gt;
+
+&lt;p&gt;However, you may get an error when you try to display the &lt;code&gt;Series&lt;/code&gt;. The major cause of this error is that Pandas looks for the amount of information to display, therefore you should provide sys output information.&lt;/p&gt;
+
+&lt;p&gt;You can solve the error by executing the code as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+import sys
+
+sys.__stdout__ = sys.stdout
+
+series1 = pd.Series([1,2,3,4])  
+print(series1)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A &lt;code&gt;Series&lt;/code&gt; may also be created from a &lt;a rel=&quot;nofollow&quot; target=&quot;_blank&quot; href=&quot;http://www.numpy.org/&quot;&gt;numpy&lt;/a&gt; array. Let us create a numpy array then convert it into a Pandas &lt;code&gt;Series&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+import numpy as np  
+import sys
+
+sys.__stdout__ = sys.stdout
+
+fruits = np.array(['apple','orange','mango','pear'])  
+series2 = pd.Series(fruits)  
+print(series2)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0     apple  
+1    orange  
+2     mango  
+3      pear  
+dtype: object  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We start by importing the necessary libraries, including &lt;code&gt;numpy&lt;/code&gt;. Next, we called the numpy's &lt;code&gt;array()&lt;/code&gt; function to create an array of fruits. We then use Pandas &lt;code&gt;Series()&lt;/code&gt; function and pass it the array that we want to convert into a series. Finally, we call the &lt;code&gt;print()&lt;/code&gt; function to display the &lt;code&gt;Series&lt;/code&gt;. &lt;/p&gt;
+
+&lt;h4 id=&quot;dataframe&quot;&gt;DataFrame&lt;/h4&gt;
+
+&lt;p&gt;The Pandas DataFrame can be seen as a table. It organizes data into rows and columns, making it a two-dimensional data structure. Potentially, the columns are of a different type and the size of the DataFrame is mutable, and hence can be modified. &lt;/p&gt;
+
+&lt;p&gt;To create a DataFrame, you can choose to start from scratch or convert other data structures like Numpy arrays into a DataFrame. Here is how you can create a DataFrame from scratch:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+df = pd.DataFrame({  
+    &quot;Column1&quot;: [1, 4, 8, 7, 9],
+    &quot;Column2&quot;: ['a', 'column', 'with', 'a', 'string'],
+    &quot;Column3&quot;: [1.23, 23.5, 45.6, 32.1234, 89.453],
+    &quot;Column4&quot;: [True, False, True, False, True]
+})
+print(df)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   Column1 Column2  Column3  Column4
+0        1       a   1.2300     True  
+1        4  column  23.5000    False  
+2        8    with  45.6000     True  
+3        7       a  32.1234    False  
+4        9  string  89.4530     True  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this example we have created a DataFrame named &lt;code&gt;df&lt;/code&gt;. The first column of the DataFrame has integer values. The second column has a string, the third column has floating point values, while the fourth column has boolean values.&lt;/p&gt;
+
+&lt;p&gt;The statement &lt;code&gt;print(df)&lt;/code&gt; will display the contents of the DataFrame to us via the console, allowing us to inspect and verify its contents.&lt;/p&gt;
+
+&lt;p&gt;However, when displaying the DataFrame, you may have noticed that there is an additional column at the start of the table, with its elements beginning at 0. This column is created automatically and it marks the indexes of the rows.&lt;/p&gt;
+
+&lt;p&gt;To create a DataFrame, we must invoke the &lt;code&gt;pd.DataFrame()&lt;/code&gt; method as shown in the above example.&lt;/p&gt;
+
+&lt;p&gt;It is possible for us to create a DataFrame from a list or even a set of lists. We only have to call the &lt;code&gt;pd.DataFrame()&lt;/code&gt; method and then pass it the list variable as its only argument.&lt;/p&gt;
+
+&lt;p&gt;Consider the following example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+mylist = [4, 8, 12, 16, 20]  
+df = pd.DataFrame(mylist)  
+print(df)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  0
+0   4  
+1   8  
+2  12  
+3  16  
+4  20  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this example we created a list named &lt;code&gt;mylist&lt;/code&gt; with a sequence of 5 integers. We then called the &lt;code&gt;DataFrame()&lt;/code&gt; method and passed the name of the list to it as the argument. This is where the conversion of the list to a DataFrame happened.&lt;/p&gt;
+
+&lt;p&gt;We have then printed out the contents of the DataFrame. The DataFrame has a default column showing indexes, with the first element being at index 0 and the last one at index &lt;code&gt;N-1&lt;/code&gt;, where N is the total number of elements in the DataFrame. &lt;/p&gt;
+
+&lt;p&gt;Here is another example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+items = [['Phone', 2000], ['TV', 1500], ['Radio', 800]]  
+df = pd.DataFrame(items, columns=['Item', 'Price'], dtype=float)  
+print(df)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Item   Price
+0  Phone  2000.0  
+1     TV  1500.0  
+2  Radio   800.0  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have created a list named &lt;code&gt;items&lt;/code&gt; with a set of 3 items. For each item, we have a name and price. The list is then passed to the &lt;code&gt;DataFrame()&lt;/code&gt; method in order to convert it into a &lt;code&gt;DataFrame&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;In this example the names of the columns for the DataFrame have been specified as well. The numeric values have also been converted into floating point values since we specified the &lt;code&gt;dtype&lt;/code&gt; argument as &quot;float&quot;.&lt;/p&gt;
+
+&lt;p&gt;To get a summary of this item's data, we can call the &lt;code&gt;describe()&lt;/code&gt; function on the DataFrame variable, that is, &lt;code&gt;df&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;df.describe()  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      Price
+count     3.000000  
+mean   1433.333333  
+std     602.771377  
+min     800.000000  
+25%    1150.000000  
+50%    1500.000000  
+75%    1750.000000  
+max    2000.000000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;describe()&lt;/code&gt; function returns some common statistical details of the data, including the mean, standard deviation, minimum element, maximum element, and some other details. This is a great way to get a snapshot of the data you're working with if the dataset is relatively unknown to you. It could also be a good way to quickly compare two separate datasets of similar data.&lt;/p&gt;
+
+&lt;h3 id=&quot;importingdata&quot;&gt;Importing Data&lt;/h3&gt;
+
+&lt;p&gt;Often times you'll need to use Pandas to analyze data that is stored in an Excel file or in a CSV file. This requires you to open and import the data from such sources into Pandas.&lt;/p&gt;
+
+&lt;p&gt;Luckily, Pandas provides us with numerous methods that we can use to load the data from such sources into a Pandas DataFrame. &lt;/p&gt;
+
+&lt;h4 id=&quot;importingcsvdata&quot;&gt;Importing CSV Data&lt;/h4&gt;
+
+&lt;p&gt;A CSV file, which stands for &lt;em&gt;comma separated value&lt;/em&gt;, is simply a text file with values separated by a comma (,). Since this is a very well-known and often-used standard, we can use Pandas to read CSV files either in whole or in part. &lt;/p&gt;
+
+&lt;p&gt;For this example we will create a CSV file named &lt;em&gt;cars.csv&lt;/em&gt;. The file should have the following data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-csv&quot;&gt;Number,Type,Capacity  
+SSD,Premio,1800  
+KCN,Fielder,1500  
+USG,Benz,2200  
+TCH,BMW,2000  
+KBQ,Range,3500  
+TBD,Premio,1800  
+KCP,Benz,2200  
+USD,Fielder,1500  
+UGB,BMW,2000  
+TBG,Range,3200  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can copy the data and paste in a text editor like Notepad, and then save it with the name &lt;em&gt;cars.csv&lt;/em&gt; in the same directory as your Python scripts.&lt;/p&gt;
+
+&lt;p&gt;Pandas provides us with a method named &lt;code&gt;read_csv&lt;/code&gt; that can be used for reading CSV values into a Pandas DataFrame. The method takes the path to the CSV file as the argument.&lt;/p&gt;
+
+&lt;p&gt;The following code is what we'll use to help us read the &lt;em&gt;cars.csv&lt;/em&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+data = pd.read_csv('cars.csv')  
+print(data)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Number     Type  Capacity
+0    SSD   Premio      1800  
+1    KCN  Fielder      1500  
+2    USG     Benz      2200  
+3    TCH      BMW      2000  
+4    KBQ    Range      3500  
+5    TBD   Premio      1800  
+6    KCP     Benz      2200  
+7    USD  Fielder      1500  
+8    UGB      BMW      2000  
+9    TBG    Range      3200  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In my case, I saved the CSV file in the same directory as the Python script, hence I simply passed the name of the file to the &lt;code&gt;read_csv&lt;/code&gt; method and it knew to check the current working directory.&lt;/p&gt;
+
+&lt;p&gt;If you have saved your file in a different path, ensure you pass the correct path as the argument to the method. This can either be a relative path, like &quot;../cars.csv&quot;, or an absolute path like &quot;/Users/nicholas/data/cars.csv&quot;.&lt;/p&gt;
+
+&lt;p&gt;In some cases, you may have thousands of rows in your dataset. In such a case, it would be more helpful to you to print only the first few rows on the console rather than printing all the rows.&lt;/p&gt;
+
+&lt;p&gt;This can be done by calling the &lt;code&gt;head()&lt;/code&gt; method on the DataFrame as shown below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;data.head()  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For our data above, the above command returns only the first 5 rows of the dataset, allowing you to inspect a small sample of the data. This is shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Number     Type  Capacity
+0    SSD   Premio      1800  
+1    KCN  Fielder      1500  
+2    USG     Benz      2200  
+3    TCH      BMW      2000  
+4    KBQ    Range      3500  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;loc()&lt;/code&gt; method is a nice utility that helps us read only certain rows of a specific column in the dataset, as demonstrated in the following example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+data = pd.read_csv('cars.csv')
+
+print (data.loc[[0, 4, 7], ['Type']])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Type
+0   Premio  
+4    Range  
+7  Fielder  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we used the &lt;code&gt;loc()&lt;/code&gt; method to only read the elements at indexes 0, 4, and 7 of the &lt;em&gt;Type&lt;/em&gt; column. &lt;/p&gt;
+
+&lt;p&gt;At times Wwe may need to only read certain columns and not others. This can be done using the &lt;code&gt;loc()&lt;/code&gt; method as well, shown below in this example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+data = pd.read_csv('cars.csv')
+
+print (data.loc[:, ['Type', 'Capacity']])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Type  Capacity  
+0   Premio      1800  
+1  Fielder      1500  
+2     Benz      2200  
+3      BMW      2000  
+4    Range      3500  
+5   Premio      1800  
+6     Benz      2200  
+7  Fielder      1500  
+8      BMW      2000  
+9    Range      3200  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we used the &lt;code&gt;loc()&lt;/code&gt; method to read all rows (the &lt;code&gt;:&lt;/code&gt; part) of only two of our columns from the dataset, that is, the &lt;em&gt;Type&lt;/em&gt; and &lt;em&gt;Capacity&lt;/em&gt; columns, as specified in the argument. &lt;/p&gt;
+
+&lt;h4 id=&quot;importingexceldata&quot;&gt;Importing Excel Data&lt;/h4&gt;
+
+&lt;p&gt;In addition to the &lt;code&gt;read_csv&lt;/code&gt; method, Pandas also has the &lt;code&gt;read_excel&lt;/code&gt; function that can be used for reading Excel data into a Pandas DataFrame. In this example, we will use an Excel file named &lt;em&gt;workers.xlsx&lt;/em&gt; with details of workers in a company. &lt;/p&gt;
+
+&lt;p&gt;The following code can be used to load the contents of the Excel file into a Pandas DataFrame:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+data = pd.read_excel('workers.xlsx')  
+print (data)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  ID    Name      Dept  Salary
+0   1    John       ICT    3000  
+1   2    Kate   Finance    2500  
+2   3  Joseph        HR    3500  
+3   4  George       ICT    2500  
+4   5    Lucy     Legal    3200  
+5   6   David   Library    2000  
+6   7   James        HR    2000  
+7   8   Alice  Security    1500  
+8   9   Bosco   Kitchen    1000  
+9  10    Mike       ICT    3300  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After calling the &lt;code&gt;read_excel&lt;/code&gt; function we then passed the name of the file as the argument, which &lt;code&gt;read_excel&lt;/code&gt; used to open/load the file and then parse the data. The &lt;code&gt;print()&lt;/code&gt; function then helps us display the contents of the DataFrame, as we've done in past examples.&lt;/p&gt;
+
+&lt;p&gt;And just like with our CSV example, this function can be combined with the &lt;code&gt;loc()&lt;/code&gt; method to help us read specific rows and columns from the Excel file.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+data = pd.read_excel('workers.xlsx')
+
+print (data.loc[[1,4,7],['Name','Salary']])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Name  Salary  
+1   Kate    2500  
+4   Lucy    3200  
+7  Alice    1500  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We have used the &lt;code&gt;loc()&lt;/code&gt; method to retrieve the &lt;em&gt;Name&lt;/em&gt; and &lt;em&gt;Salary&lt;/em&gt; values of the elements at indexes 1, 4, and 7. &lt;/p&gt;
+
+&lt;p&gt;Pandas also allows us to read from two Excel sheets simultaneously. Suppose our previous data is in Sheet1, and we have some other data in Sheet2 of the same Excel file. The following code shows how we can read from the two sheets simultaneously:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd  
+with pd.ExcelFile('workers.xlsx') as x:  
+    s1 = pd.read_excel(x, 'Sheet1')
+    s2 = pd.read_excel(x, 'Sheet2')
+
+print(&quot;Sheet 1:&quot;)  
+print (s1)  
+print(&quot;&quot;)  
+print(&quot;Sheet 2:&quot;)  
+print (s2)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Sheet 1:  
+   ID    Name      Dept  Salary
+0   1    John       ICT    3000  
+1   2    Kate   Finance    2500  
+2   3  Joseph        HR    3500  
+3   4  George       ICT    2500  
+4   5    Lucy     Legal    3200  
+5   6   David   Library    2000  
+6   7   James        HR    2000  
+7   8   Alice  Security    1500  
+8   9   Bosco   Kitchen    1000  
+9  10    Mike       ICT    3300
+
+Sheet 2:  
+   ID    Name  Age  Retire
+0   1    John   55    2023  
+1   2    Kate   45    2033  
+2   3  Joseph   55    2023  
+3   4  George   35    2043  
+4   5    Lucy   42    2036  
+5   6   David   50    2028  
+6   7   James   30    2048  
+7   8   Alice   24    2054  
+8   9   Bosco   33    2045  
+9  10    Mike   35    2043  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happened is that we combined the &lt;code&gt;read_excel()&lt;/code&gt; function with the &lt;code&gt;ExcelFile&lt;/code&gt; wrapper class. The variable &lt;code&gt;x&lt;/code&gt; was created when calling the wrapper class and &lt;code&gt;with&lt;/code&gt; Python keyword, which we use to temporarily open the file.&lt;/p&gt;
+
+&lt;p&gt;From the &lt;code&gt;ExcelFile&lt;/code&gt; variable &lt;code&gt;x&lt;/code&gt;, we have created two more variables, &lt;code&gt;s1&lt;/code&gt; and &lt;code&gt;s2&lt;/code&gt; to represent the contents that were read from the different sheets.&lt;/p&gt;
+
+&lt;p&gt;We then used &lt;code&gt;print&lt;/code&gt; statements to view the contents of the two sheets in the console. The blank &lt;code&gt;print&lt;/code&gt; statement, &lt;code&gt;print(&quot;&quot;)&lt;/code&gt;, is only used to print a blank line between our sheet data.&lt;/p&gt;
+
+&lt;h3 id=&quot;datawrangling&quot;&gt;Data Wrangling&lt;/h3&gt;
+
+&lt;p&gt;Data wrangling is the process of processing data to prepare it for use in the next step. Examples of data wrangling processes include merging, grouping, and concatenation. This kind of manipulation is often needed in data science to get your data in to a form that works well with whatever analysis or algorithms that you're going to put it through.&lt;/p&gt;
+
+&lt;h4 id=&quot;merging&quot;&gt;Merging&lt;/h4&gt;
+
+&lt;p&gt;The Pandas library allows us to join DataFrame objects via the &lt;code&gt;merge()&lt;/code&gt; function. Let us create two DataFrames and demonstrate how to merge them.&lt;/p&gt;
+
+&lt;p&gt;Here is the first DataFrame, &lt;code&gt;df1&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd
+
+d = {  
+    'subject_id': ['1', '2', '3', '4', '5'],
+    'student_name': ['John', 'Emily', 'Kate', 'Joseph', 'Dennis']
+}
+df1 = pd.DataFrame(d, columns=['subject_id', 'student_name'])  
+print(df1)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;subject_id student_name  
+0          1         John  
+1          2        Emily  
+2          3         Kate  
+3          4       Joseph  
+4          5       Dennis  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the code to create the second DataFrame, &lt;code&gt;df2&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd
+
+data = {  
+    'subject_id': ['4', '5', '6', '7', '8'],
+    'student_name': ['Brian', 'William', 'Lilian', 'Grace', 'Caleb']
+}
+df2 = pd.DataFrame(data, columns=['subject_id', 'student_name'])  
+print(df2)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;subject_id student_name  
+0          4        Brian  
+1          5      William  
+2          6       Lilian  
+3          7        Grace  
+4          8        Caleb  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We now need to merge the two DataFrames, that is, &lt;code&gt;df1&lt;/code&gt; and &lt;code&gt;df2&lt;/code&gt; along the values of &lt;code&gt;subject_id&lt;/code&gt;. We simply call the &lt;code&gt;merge()&lt;/code&gt; function as shown below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;pd.merge(df1, df2, on='subject_id')  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;subject_id student_name_x student_name_y  
+0          4         Joseph          Brian  
+1          5         Dennis        William  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What merging does is that it returns the rows from both DataFrames with the same value for the column you are using for the merge. &lt;/p&gt;
+
+&lt;p&gt;There are many other ways to use the &lt;code&gt;pd.merge&lt;/code&gt; function that we won't be covering in this article, such as what data should be merged, how it should be merged, if it should be sorted, etc. For more information, check out the official documentation on the &lt;a rel=&quot;nofollow&quot; target=&quot;_blank&quot; href=&quot;https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.html&quot;&gt;merge function&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;grouping&quot;&gt;Grouping&lt;/h4&gt;
+
+&lt;p&gt;Grouping is the process of putting data into various categories. Here is a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# import pandas library
+import pandas as pd
+
+raw = {  
+    'Name': ['John', 'John', 'Grace', 'Grace', 'Benjamin', 'Benjamin', 'Benjamin',
+        'Benjamin', 'John', 'Alex', 'Alex', 'Alex'],
+    'Position': [2, 1, 1, 4, 2, 4, 3, 1, 3, 2, 4, 3],
+    'Year': [2009, 2010, 2009, 2010, 2010, 2010, 2011, 2012, 2011, 2013, 2013, 2012],
+    'Marks':[408, 398, 422, 376, 401, 380, 396, 388, 356, 402, 368, 378]
+}
+df = pd.DataFrame(raw)
+
+group = df.groupby('Year')  
+print(group.get_group(2010))  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   Marks      Name  Position  Year
+1    398      John         1  2010  
+3    376     Grace         4  2010  
+5    380  Benjamin         4  2010  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this simple example, we have grouped the data by year, which in this case was 2010. We could have also grouped by any of the other columns, like &quot;Name&quot;, &quot;Position&quot;, etc.&lt;/p&gt;
+
+&lt;h4 id=&quot;concatenation&quot;&gt;Concatenation&lt;/h4&gt;
+
+&lt;p&gt;Concatenation of data, which basically means to add one set of data to another, can be done by calling the &lt;code&gt;concat()&lt;/code&gt; function. &lt;/p&gt;
+
+&lt;p&gt;Let us demonstrate how to concatenate DataFrames using our two previous Dataframes, that is, &lt;code&gt;df1&lt;/code&gt; and &lt;code&gt;df2&lt;/code&gt;, each with two columns, &quot;subject_id&quot; and &quot;student_name&quot;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(pd.concat([df1, df2]))  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;subject_id student_name  
+0          1         John  
+1          2        Emily  
+2          3         Kate  
+3          4       Joseph  
+4          5       Dennis  
+0          4        Brian  
+1          5      William  
+2          6       Lilian  
+3          7        Grace  
+4          8        Caleb  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;descriptivestatistics&quot;&gt;Descriptive Statistics&lt;/h3&gt;
+
+&lt;p&gt;As I briefly showed earlier, when we use the &lt;code&gt;describe()&lt;/code&gt; function we get the descriptive statistics for numerical columns, but the character columns are excluded. &lt;/p&gt;
+
+&lt;p&gt;Let's first create a DataFrame showing student names and their scores in Math and English:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas as pd
+
+data = {  
+    'Name': ['John', 'Alice', 'Joseph', 'Alex'],
+    'English': [64, 78, 68, 58],
+    'Maths': [76, 54, 72, 64]
+}
+
+df = pd.DataFrame(data)  
+print(df)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; English  Maths    Name
+0       64     76    John  
+1       78     54   Alice  
+2       68     72  Joseph  
+3       58     64    Alex  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We only have to call the &lt;code&gt;describe()&lt;/code&gt; function on the DataFrame and get the various measures like the mean, standard deviation, median, maximum element, minimum element, etc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;df.describe()  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   English      Maths
+count   4.000000   4.000000  
+mean   67.000000  66.500000  
+std     8.406347   9.712535  
+min    58.000000  54.000000  
+25%    62.500000  61.500000  
+50%    66.000000  68.000000  
+75%    70.500000  73.000000  
+max    78.000000  76.000000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, the &lt;code&gt;describe()&lt;/code&gt; method completely ignored the &quot;Name&quot; column since it is not numberical, which is what we want. This simplifies things for the caller since you don't need to worry about removing non-numerical columns before calculating the numerical stats you want.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Pandas is an extremely useful Python library, particularly for data science. Various Pandas functionalities make data preprocessing extremely simple. This article provides a brief introduction to the main functionalities of the library. In this article, we saw working examples of all the major utilities of Pandas library. To get the most out of Pandas, I would suggest you practice the examples in this article and also test the library with your own datasets. Happy Coding!&lt;/p&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 13:27:00 +0000</pubDate>
+</item>
+<item>
+	<title>Zato Blog: Connecting Zato clusters with WebSockets and publish/subscribe queues</title>
+	<guid>https://zato.io/blog/posts/connect-clusters-websockets.html</guid>
+	<link>https://zato.io/blog/posts/connect-clusters-websockets.html</link>
+	<description>&lt;p&gt;Since version 3.0, it is possible to directly connect &lt;a href=&quot;https://zato.io/docs/&quot;&gt;Zato&lt;/a&gt; clusters and exchange messages as though remote services where running in a local instance. This makes it an ideal choice for environments split into multiple parts.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The reasons to have more than one cluster, each with one or more servers, may vary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For HA and performance, environments may be broken out geographically into a setup with one cluster per continent or a region of the world&lt;/li&gt;
+&lt;li&gt;CPU-extensive operations may be carried out in one cluster with another making use of the results the former produces to offer a set of APIs&lt;/li&gt;
+&lt;li&gt;For legal reasons, it may not be allowed to run all integration services in one cluster, using the same hardware and software infrastructure&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new feature in Zato 3.0 which allows for efficient communication between clusters are WebSocket connections - one of clusters will create
+&lt;a href=&quot;https://zato.io/docs/web-admin/channels/wsx.html&quot;&gt;a channel&lt;/a&gt;
+through with other clusters may
+invoke
+its services via their
+&lt;a href=&quot;https://zato.io/docs/web-admin/outgoing/wsx.html&quot;&gt;outgoing connections&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;WebSockets (WSX for short) have essentially no overhead in practice but they can be used for bi-directional communication hence they are a great choice for such scenarios.&lt;/p&gt;
+
+&lt;p&gt;From a Zato programmer's perspective, all the communication details are hidden and a couple of lines of code suffices to invoke services or receive messages from remote clusters, for instance:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Obtain a handle to a remote connection&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wsx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'My Connection'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Invoke a remote service - expects a Python dict on input&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# and returns a Python dict on response. All the serialization&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# and network connectivity is handled automatically.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;architecture-and-configuration&quot;&gt;Architecture and configuration&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&quot;https://zato.io/blog/images/wsx-connect-clusters/wsx.png&quot; alt=&quot;Screenshots&quot; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Each cluster which is to become a recipient of messages from other clusters needs to have a new WebSocket channel created with service &lt;strong&gt;helpers.web-sockets-gateway&lt;/strong&gt; mounted on it. A security definition should also be attached as required.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Each cluster that should invoke another one needs to have an outgoing WebSocket connection created - make sure &lt;strong&gt;Is remote end Zato&lt;/strong&gt; checkbox is on and that credentials are provided, if required by the other side.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the cluster with an outgoing connection is interested in receiving publish/subscribe messages, all topics it wants to subscribe to should be listed, one in each line. Make sure the cluster with a channel has a correct &lt;a href=&quot;https://zato.io/docs/pubsub/details/endpoint/index.html&quot;&gt;pub/sub endpoint&lt;/a&gt; configured for that channel.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The cluster which establishes the connection (here, cluster1) may also want to subscribe to events of interest via hooks services - more about it below.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once an outgoing connection is created, internal tasks will start on cluster1 to establish a remote connection to server2. If successful, authentication will take place automatically. Finally, if configured, a hook service will fire to let cluster1 know that a new connection was established. Afterwards, cluster1 may start to invoke remote services.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There are no other steps involved, at this point everything is configured and ready to be used.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&quot;https://zato.io/blog/images/wsx-connect-clusters/wsx-channel.png&quot; alt=&quot;Screenshots&quot; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&quot;https://zato.io/blog/images/wsx-connect-clusters/wsx-outconn.png&quot; alt=&quot;Screenshots&quot; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;from-a-programmers-perspective&quot;&gt;From a programmer's perspective&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To invoke remote Zato services, programmers use WebSockets  &lt;a href=&quot;https://zato.io/docs/progguide/examples/wsx.html#invoking-remote-zato-services&quot;&gt;outgoing connections methods&lt;/a&gt; - providing a dictionary of input data to the invocation and receiving a dictionary of data on input. Note that the invocation is synchronous, your service is blocked until the remote cluster responds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absolute_import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;division&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unicode_literals&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;zato.server.service&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Message to send - needs to be a dictionary with name&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# of the service to invoke as well as its input data, if any is required.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# In this case, we are invoking an echo service&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# which writes back to output anything it receives on input.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+             &lt;span class=&quot;s1&quot;&gt;'service'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'zato.helpers.echo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+             &lt;span class=&quot;s1&quot;&gt;'request'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                 &lt;span class=&quot;s1&quot;&gt;'elem1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'value1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;s1&quot;&gt;'elem2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'value2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+             &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Name of the connection to send messages through&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;conn_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'My WSX Outconn'&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Obtain a client from the connection pool&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wsx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;conn_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;# Send the message and read its response&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;# Or, client.invoke can be used with Zato WebSocket connections,&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# this method is an alias to client.send&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;# Log the response received&lt;/span&gt;
+            &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Response is `&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;`'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;&lt;span&gt;&lt;/span&gt;INFO - Response is `{u'elem2': u'value2', u'elem1': u'value1'}`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;To receive messages, &lt;a href=&quot;https://zato.io/docs/progguide/examples/wsx.html#hook-services-receiving-messages-and-reacting-to-events&quot;&gt;hook services&lt;/a&gt; are used. There are three events for which hooks can be triggered - they can be handled by different services or the same one, it is up to users:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Upon connecting to a remote cluster, including reconnects (on_connect)&lt;/li&gt;
+&lt;li&gt;Upon receiving messages from remote clusters (on_message)&lt;/li&gt;
+&lt;li&gt;Once a connection to the remote cluster is shut down (on_close)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The on_message hook can be combined with &lt;a href=&quot;https://zato.io/docs/pubsub/index.html&quot;&gt;publish/subscribe&lt;/a&gt; topics and queues - each time the remote cluster (the one with a WSX channel) publishes a message that the local cluster (the one with a WSX outgoing connection) is interested in, the on_message hook will be called to handle it, in this manner making it possible for remote clusters to deliver messages to clusters subscribing to topics.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Each hook is just a Zato service with a specific SimpleIO signature, as in the on_message example below:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absolute_import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;division&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unicode_literals&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;zato.server.service&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Opaque&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OnMessageHook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;input_optional&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Opaque&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ctx'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Object describing incoming data&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Message type&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;msg_type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Data received&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Log message type&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Msg type: `&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;`'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg_type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Log actual data&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Data received: `&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;`'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Log metadata - ID and timestamp&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Meta: `&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;` `&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;`'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we can use web-admin to publish a test message and confirm that the on_message service receives it:&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&quot;https://zato.io/blog/images/wsx-connect-clusters/publish.png&quot; alt=&quot;Screenshots&quot; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;In the on_message service's server logs:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;&lt;span&gt;&lt;/span&gt;INFO - Msg type: `message`
+INFO - Data received: `[
+  {u'delivery_count': 0,
+   u'msg_id': u'zpsme26726911ffbe8cba2cca278',
+   u'expiration_time_iso': u'2086-09-21T14:03:05.285470',
+   u'topic_name': u'/customer/new',
+   u'pub_time_iso': u'2018-09-03T10:48:58.285470',
+   u'priority': 5,
+   u'expiration': 2147483647000,
+   u'has_gd': True,
+   u'data': u'This is a sample message',
+   u'sub_key': u'zpsk.websockets.6ef529f7cab64a71d8bd2878',
+   u'mime_type': u'text/plain',
+   u'size': 24}
+  ]`
+INFO - `6fd296ecf78493a3a0ce7570` `2018-09-03T10:49:00.540024`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In
+&lt;a href=&quot;https://zato.io/docs/&quot;&gt;Zato&lt;/a&gt;
+&lt;a href=&quot;https://zato.io/docs/project/changelog.html&quot;&gt;3.0&lt;/a&gt; and later clusters can be easily connected using efficient
+&lt;a href=&quot;https://zato.io/docs/web-admin/channels/wsx.html&quot;&gt;WebSocket&lt;/a&gt;
+&lt;a href=&quot;https://zato.io/docs/web-admin/outgoing/wsx.html&quot;&gt;connections&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Once configured, such connections are maintained automatically under the hood&lt;/li&gt;
+&lt;li&gt;Connections can be used either
+&lt;a href=&quot;https://zato.io/docs/progguide/examples/wsx.html&quot;&gt;to invoke remote services or to receive messages&lt;/a&gt;
+from
+&lt;a href=&quot;https://zato.io/docs/pubsub/index.html&quot;&gt;publish/subscribe topics and queues&lt;/a&gt; in a straightforward manner&lt;/li&gt;
+&lt;li&gt;As always, the focus of the new functionality is to let users concentrate on their actual integration needs rather than on tedious, low-level, details&lt;/li&gt;
+&lt;/ul&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 11:05:07 +0000</pubDate>
+</item>
+<item>
+	<title>Julien Danjou: High-Performance in Python with Zero-Copy and the Buffer Protocol</title>
+	<guid>https://julien.danjou.info/high-performance-in-python-with-zero-copy-and-the-buffer-protocol/</guid>
+	<link>https://julien.danjou.info/high-performance-in-python-with-zero-copy-and-the-buffer-protocol/</link>
+	<description>&lt;img src=&quot;https://julien.danjou.info/content/images/2018/08/photo-design-lab-227730-unsplash.jpg&quot; alt=&quot;High-Performance in Python with Zero-Copy and the Buffer Protocol&quot; /&gt;&lt;p&gt;Whatever your programs are doing, they often have to deal with vast amounts of data. This data is usually represented and manipulated in the form of &lt;em&gt;strings&lt;/em&gt;. However, handling such a large quantity of input in strings can be very ineffective once you start manipulating them by copying, slicing, and modifying. Why?&lt;/p&gt;
+&lt;p&gt;Let's consider a small program which reads a large file of binary data, and&lt;br /&gt;
+copies it partially into another file. To examine out the memory usage of this program, we will use &lt;a href=&quot;https://pypi.python.org/pypi/memory_profiler&quot;&gt;memory_profiler&lt;/a&gt;, an excellent Python package that allows us to see the memory usage of a program line by line.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;@profile
+def read_random():
+    with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+        content = source.read(1024 * 10000)
+        content_to_write = content[1024:]
+    print(&amp;quot;Content length: %d, content to write length %d&amp;quot; %
+          (len(content), len(content_to_write)))
+    with open(&amp;quot;/dev/null&amp;quot;, &amp;quot;wb&amp;quot;) as target:
+        target.write(content_to_write)
+
+if __name__ == '__main__':
+    read_random()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running the above program using &lt;em&gt;memory_profiler&lt;/em&gt; produces the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ python -m memory_profiler memoryview/copy.py
+Content length: 10240000, content to write length 10238976
+Filename: memoryview/copy.py
+
+Mem usage    Increment   Line Contents
+======================================
+                         @profile
+ 9.883 MB     0.000 MB   def read_random():
+ 9.887 MB     0.004 MB       with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+19.656 MB     9.770 MB           content = source.read(1024 * 10000)
+29.422 MB     9.766 MB           content_to_write = content[1024:]
+29.422 MB     0.000 MB       print(&amp;quot;Content length: %d, content to write length %d&amp;quot; %
+29.434 MB     0.012 MB             (len(content), len(content_to_write)))
+29.434 MB     0.000 MB       with open(&amp;quot;/dev/null&amp;quot;, &amp;quot;wb&amp;quot;) as target:
+29.434 MB     0.000 MB           target.write(content_to_write)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The call to &lt;code&gt;source.read&lt;/code&gt; reads 10 MB from &lt;code&gt;/dev/urandom&lt;/code&gt;. Python needs to allocate around 10 MB of memory to store this data as a string. The instruction on the line just after, &lt;code&gt;content[1024:]&lt;/code&gt;, copies the entire block of data minus the first KB — allocating 10 more megabytes.&lt;/p&gt;
+&lt;p&gt;So what's interesting here, is to notice that the memory usage of the program increased by about 10 MB when building the variable &lt;code&gt;content_to_write&lt;/code&gt;. The slice operator is copying the entirety of &lt;code&gt;content&lt;/code&gt;, minus the first KB, into a new string object.&lt;/p&gt;
+&lt;p&gt;When dealing with extensive data, performing this kind of operation on large byte arrays is going to be a disaster. If you already have written C code, you know that using &lt;code&gt;memcpy()&lt;/code&gt; has a significant cost, both in term of memory usage and regarding general performance: copying memory is slow.&lt;/p&gt;
+&lt;p&gt;However, as a C programmer, you also know that strings are arrays of characters and that nothing stops you from looking at only part of this array without copying it, through the use of basic pointer arithmetic – assuming that the entire string is in a contiguous memory area.&lt;/p&gt;
+&lt;p&gt;This is possible in Python using objects which implement the &lt;em&gt;buffer protocol&lt;/em&gt;. The buffer protocol is defined in &lt;a href=&quot;http://www.python.org/dev/peps/pep-3118/&quot;&gt;PEP 3118&lt;/a&gt;, which explains the C API used to provide this protocol to various types, such as strings.&lt;/p&gt;
+&lt;p&gt;When an object implements this protocol, you can use the &lt;code&gt;memoryview&lt;/code&gt; class constructor on it to build a new &lt;em&gt;memoryview&lt;/em&gt; object that references the original object memory.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; s = b&amp;quot;abcdefgh&amp;quot;
+&amp;gt;&amp;gt;&amp;gt; view = memoryview(s)
+&amp;gt;&amp;gt;&amp;gt; view[1]
+98
+&amp;gt;&amp;gt;&amp;gt; limited = view[1:3]
+&amp;gt;&amp;gt;&amp;gt; limited
+&amp;lt;memory at 0x7fca18b8d460&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; bytes(view[1:3])
+b'bc'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: &lt;code&gt;98&lt;/code&gt; is the ASCII code for the letter &lt;code&gt;b&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the example above, we use the fact that the &lt;code&gt;memoryview&lt;/code&gt; object's slice operator itself returns a &lt;code&gt;memoryview&lt;/code&gt; object. That means it does &lt;strong&gt;not&lt;/strong&gt; copy any data but merely references a particular slice of it.&lt;/p&gt;
+&lt;p&gt;The graph below illustrates what happens:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://julien.danjou.info/content/images/2018/08/serious-python__3.png&quot; alt=&quot;High-Performance in Python with Zero-Copy and the Buffer Protocol&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, it is possible to rewrite the program above in a more efficient manner. We need to reference the data that we want to write using a &lt;em&gt;memoryview&lt;/em&gt; object, rather than allocating a new string.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;@profile
+def read_random():
+    with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+        content = source.read(1024 * 10000)
+        content_to_write = memoryview(content)[1024:]
+    print(&amp;quot;Content length: %d, content to write length %d&amp;quot; %
+          (len(content), len(content_to_write)))
+    with open(&amp;quot;/dev/null&amp;quot;, &amp;quot;wb&amp;quot;) as target:
+        target.write(content_to_write)
+
+if __name__ == '__main__':
+    read_random()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let's run the program above with the memory profiler:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ python -m memory_profiler memoryview/copy-memoryview.py
+Content length: 10240000, content to write length 10238976
+Filename: memoryview/copy-memoryview.py
+
+Mem usage    Increment   Line Contents
+======================================
+                         @profile
+ 9.887 MB     0.000 MB   def read_random():
+ 9.891 MB     0.004 MB       with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+19.660 MB     9.770 MB           content = source.read(1024 * 10000) &amp;lt;1&amp;gt;
+19.660 MB     0.000 MB           content_to_write = memoryview(content)[1024:] &amp;lt;2&amp;gt;
+19.660 MB     0.000 MB       print(&amp;quot;Content length: %d, content to write length %d&amp;quot; %
+19.672 MB     0.012 MB             (len(content), len(content_to_write)))
+19.672 MB     0.000 MB       with open(&amp;quot;/dev/null&amp;quot;, &amp;quot;wb&amp;quot;) as target:
+19.672 MB     0.000 MB           target.write(content_to_write)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In that case, the &lt;code&gt;source.read&lt;/code&gt; call still allocates 10 MB of memory to read the content of the file. However, when using &lt;code&gt;memoryview&lt;/code&gt; to refer to the offset content, no more memory is allocated.&lt;/p&gt;
+&lt;p&gt;This version of the program ends up allocating 50% less memory than the original version!&lt;/p&gt;
+&lt;p&gt;This kind of trick is especially useful when dealing with sockets. When sending data over a socket, all the data might not be sent in a single call.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import socket
+s = socket.socket(…)
+s.connect(…)
+# Build a bytes object with more than 100 millions times the letter `a`
+data = b&amp;quot;a&amp;quot; * (1024 * 100000)
+while data:
+    sent = s.send(data)
+    # Remove the first `sent` bytes sent
+    data = data[sent:] &amp;lt;2&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using a mechanism as implemented above, the program copies the data over and over until the socket has sent everything. By using &lt;code&gt;memoryview&lt;/code&gt;, it is possible to achieve the same functionality with zero-copy, and therefore higher performance:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import socket
+s = socket.socket(…)
+s.connect(…)
+# Build a bytes object with more than 100 millions times the letter `a`
+data = b&amp;quot;a&amp;quot; * (1024 * 100000)
+mv = memoryview(data)
+while mv:
+    sent = s.send(mv)
+    # Build a new memoryview object pointing to the data which remains to be sent
+    mv = mv[sent:]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As this won't copy anything, it won't use any more memory than the 100 MB&lt;br /&gt;
+initially needed for the &lt;code&gt;data&lt;/code&gt; variable.&lt;/p&gt;
+&lt;p&gt;So far we've used &lt;code&gt;memoryview&lt;/code&gt; objects to write data efficiently, but the same method can also be used to read data. Most I/O operations in Python know how to deal with objects implementing the buffer protocol. They can read from it, but also write to it. In this case, we don't need &lt;code&gt;memoryview&lt;/code&gt; objects – we can ask an I/O function to write into our pre-allocated object:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; ba = bytearray(8)
+&amp;gt;&amp;gt;&amp;gt; ba
+bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00')
+&amp;gt;&amp;gt;&amp;gt; with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+...     source.readinto(ba)
+... 
+8
+&amp;gt;&amp;gt;&amp;gt; ba
+bytearray(b'`m.z\x8d\x0fp\xa1')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With such techniques, it's easy to pre-allocate a buffer (as you would do in C to mitigate the number of calls to &lt;code&gt;malloc()&lt;/code&gt;) and fill it at your convenience.&lt;/p&gt;
+&lt;p&gt;Using &lt;code&gt;memoryview&lt;/code&gt;, you can even place data at any point in the memory area:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; ba = bytearray(8)
+&amp;gt;&amp;gt;&amp;gt; # Reference the _bytearray_ from offset 4 to its end
+&amp;gt;&amp;gt;&amp;gt; ba_at_4 = memoryview(ba)[4:]
+&amp;gt;&amp;gt;&amp;gt; with open(&amp;quot;/dev/urandom&amp;quot;, &amp;quot;rb&amp;quot;) as source:
+... # Write the content of /dev/urandom from offset 4 to the end of the
+... # bytearray, effectively reading 4 bytes only
+...     source.readinto(ba_at_4)
+... 
+4
+&amp;gt;&amp;gt;&amp;gt; ba
+bytearray(b'\x00\x00\x00\x00\x0b\x19\xae\xb2')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The buffer protocol is fundamental to achieve low memory overhead and great performances. As Python hides all the memory allocations, developers tend to forget what happens under the hood, at a high cost for the speed of their programs!&lt;/p&gt;
+&lt;p&gt;It's also good to know that both the objects in the &lt;code&gt;array&lt;/code&gt; module and the functions in the &lt;code&gt;struct&lt;/code&gt; module can handle the buffer protocol correctly, and can, therefore, efficiently perform when targeting zero copy.&lt;/p&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 09:19:00 +0000</pubDate>
+</item>
+<item>
+	<title>Codementor: We don't need a ternary operator</title>
+	<guid>https://www.codementor.io/edaqa/we-don-t-need-a-ternary-operator-mxiy9qv6f</guid>
+	<link>https://www.codementor.io/edaqa/we-don-t-need-a-ternary-operator-mxiy9qv6f</link>
+	<description>Why the ternary operator is messy and how we could get rid of it.</description>
+	<pubDate>Mon, 03 Sep 2018 08:45:03 +0000</pubDate>
+</item>
+<item>
+	<title>Tryton News: Newsletter September 2018</title>
+	<guid>https://discuss.tryton.org/t/newsletter-september-2018/629</guid>
+	<link>https://discuss.tryton.org/t/newsletter-september-2018/629</link>
+	<description>&lt;p&gt;&lt;a href=&quot;https://discuss.tryton.org/u/ced&quot;&gt;@ced&lt;/a&gt; wrote:&lt;/p&gt;
+            &lt;blockquote&gt;
+              &lt;p&gt;This is the last month before the long term release 5.0. So many ongoing development has finally landed in Tryton.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;lightbox-wrapper&quot;&gt;&lt;a class=&quot;lightbox&quot; href=&quot;https://discuss.tryton.org/uploads/default/original/1X/25864daf12aca36a80c57ba207cf132e6e21288c.jpeg&quot; title=&quot;1024px-Modest_Huys_-_Vlasoogst.jpeg&quot;&gt;&lt;img src=&quot;https://discuss.tryton.org/uploads/default/original/1X/25864daf12aca36a80c57ba207cf132e6e21288c.jpeg&quot; alt=&quot;Flax harvest by Modest Huys&quot; width=&quot;668&quot; height=&quot;500&quot; /&gt;&lt;div class=&quot;meta&quot;&gt;
+&lt;span class=&quot;filename&quot;&gt;1024px-Modest_Huys_-_Vlasoogst.jpeg&lt;/span&gt;&lt;span class=&quot;informations&quot;&gt;1024x766 241 KB&lt;/span&gt;&lt;span class=&quot;expand&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h1&gt;Changes for the user&lt;/h1&gt;
+&lt;h2&gt;Style default button&lt;/h2&gt;
+&lt;p&gt;The default buttons on desktop client have the &lt;a href=&quot;https://bugs.tryton.org/issue7586&quot;&gt;style of suggested action&lt;/a&gt;.&lt;br /&gt;
+&lt;img src=&quot;https://discuss.tryton.org/uploads/default/original/1X/b0040ab39ede516d84f46bd4d638e01ae2ecf31d.png&quot; alt=&quot;Tryton login window&quot; width=&quot;500&quot; height=&quot;340&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Use of message dialog&lt;/h2&gt;
+&lt;p&gt;All the &lt;a href=&quot;https://bugs.tryton.org/issue7587&quot;&gt;message dialog&lt;/a&gt; of the desktop client uses now the &lt;a href=&quot;https://developer.gnome.org/gtk3/stable/GtkMessageDialog.html&quot;&gt;GTK MessageDialog&lt;/a&gt;. This unify the behavior with other GTK application.&lt;/p&gt;
+&lt;h2&gt;Better dialog size&lt;/h2&gt;
+&lt;p&gt;Instead of using the same size of the parent window which confused some users. Instead we let GTK compute the &lt;a href=&quot;https://bugs.tryton.org/issue7511&quot;&gt;natural size of the dialog&lt;/a&gt; depending of the content. But this requires to deactivate the scrolled window. So wizard that displays full form should be run in tab instead of dialog.&lt;/p&gt;
+&lt;h2&gt;New icons&lt;/h2&gt;
+&lt;p&gt;We replaced the tango icons for which we missed many for business modules by a subset of the &lt;a href=&quot;https://material.io/tools/icons/&quot;&gt;Material Icons&lt;/a&gt;. We also took the opportunity to curate and rationalize the list of default icons.&lt;br /&gt;
+&lt;div class=&quot;lightbox-wrapper&quot;&gt;&lt;a class=&quot;lightbox&quot; href=&quot;https://discuss.tryton.org/uploads/default/original/1X/9b6ad1df21c1e537d6bf4ecaba72ad4a5c79d162.png&quot; title=&quot;2018-08-19-233316_1387x861_scrot.png&quot;&gt;&lt;img src=&quot;https://discuss.tryton.org/uploads/default/optimized/1X/9b6ad1df21c1e537d6bf4ecaba72ad4a5c79d162_1_690x428.png&quot; alt=&quot;Desktop client with material icons&quot; width=&quot;690&quot; height=&quot;428&quot; /&gt;&lt;div class=&quot;meta&quot;&gt;
+&lt;span class=&quot;filename&quot;&gt;2018-08-19-233316_1387x861_scrot.png&lt;/span&gt;&lt;span class=&quot;informations&quot;&gt;1387x861 87.5 KB&lt;/span&gt;&lt;span class=&quot;expand&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;div class=&quot;lightbox-wrapper&quot;&gt;&lt;a class=&quot;lightbox&quot; href=&quot;https://discuss.tryton.org/uploads/default/original/1X/df0be619be84bf29d712c3fabf16da489a69b359.png&quot; title=&quot;image.png&quot;&gt;&lt;img src=&quot;https://discuss.tryton.org/uploads/default/optimized/1X/df0be619be84bf29d712c3fabf16da489a69b359_1_690x354.png&quot; alt=&quot;Web client with material icons&quot; width=&quot;690&quot; height=&quot;354&quot; /&gt;&lt;div class=&quot;meta&quot;&gt;
+&lt;span class=&quot;filename&quot;&gt;image.png&lt;/span&gt;&lt;span class=&quot;informations&quot;&gt;1918x985 152 KB&lt;/span&gt;&lt;span class=&quot;expand&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;New party name on address&lt;/h2&gt;
+&lt;p&gt;Sometimes it is needed to store on a party an address that is not the real address of the party. So his name can not be used as the name on the mailbox. So we &lt;a href=&quot;https://bugs.tryton.org/issue7556&quot;&gt;added an optional “Party Name” on the address&lt;/a&gt; which is used if filled to format the address instead of the name of the linked party and the last one will be used as the attention name.&lt;/p&gt;
+&lt;h2&gt;Fall-back email for dunning&lt;/h2&gt;
+&lt;p&gt;When an email must be sent for dunning, the party may not have an email configured. In this case, we can now &lt;a href=&quot;https://bugs.tryton.org/issue7624&quot;&gt;configure a fall-back address&lt;/a&gt; to which the email will be sent. It may be the address of the secretary for example which will be forward the dunning to the party with the proper mechanism.&lt;br /&gt;
+The type of email can be also configured at the dunning level. In such way that they are sent to the invoice email.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://discuss.tryton.org/t/asset-subscribed/566&quot;&gt;Asset subscribed&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;sale_subscription_asset&lt;/code&gt; module extends the Subscription to store which assets are rent.&lt;br /&gt;
+The user can configure a subscription service to require an asset by defining which the lot are available. Tryton display also the lot currently available for each service.&lt;br /&gt;
+On subscription line for such service, it is possible to reserve an asset by setting its lot number. The lot becomes required to run the subscription.&lt;br /&gt;
+Tryton ensure that a lot can be rent only once at the same time.&lt;/p&gt;
+&lt;h2&gt;Apply factor in search bar&lt;/h2&gt;
+&lt;p&gt;Some numerical field can have a factor for the display. The common usage percentage field which are stored as number between 0 and 1 but are displayed with a factor of 100. For now, searching on such field is performed on &lt;a href=&quot;https://bugs.tryton.org/issue7642&quot;&gt;value with the factor applied&lt;/a&gt;. This provides a better experience for the user.&lt;/p&gt;
+&lt;h2&gt;Right to left support on web client&lt;/h2&gt;
+&lt;p&gt;The web client supports now, like the desktop, the right to left language.&lt;br /&gt;
+&lt;div class=&quot;lightbox-wrapper&quot;&gt;&lt;a class=&quot;lightbox&quot; href=&quot;https://discuss.tryton.org/uploads/default/original/1X/2a52d1efb65f0b22fd5ba8dfc99d4b6d7c1935ed.png&quot; title=&quot;image.png&quot;&gt;&lt;img src=&quot;https://discuss.tryton.org/uploads/default/optimized/1X/2a52d1efb65f0b22fd5ba8dfc99d4b6d7c1935ed_1_690x354.png&quot; alt=&quot;web client in right to left Persian&quot; width=&quot;690&quot; height=&quot;354&quot; /&gt;&lt;div class=&quot;meta&quot;&gt;
+&lt;span class=&quot;filename&quot;&gt;image.png&lt;/span&gt;&lt;span class=&quot;informations&quot;&gt;1918x985 164 KB&lt;/span&gt;&lt;span class=&quot;expand&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;Final state for dunning&lt;/h2&gt;
+&lt;p&gt;When the dunning reach the last level of the procedure, its &lt;a href=&quot;https://bugs.tryton.org/issue7625&quot;&gt;state is changed to final&lt;/a&gt; instead of disappearing in the list of dunning done. This allow to still keep track of those dunning that requires manual procedure.&lt;/p&gt;
+&lt;h2&gt;Support chart of account evolution&lt;/h2&gt;
+&lt;p&gt;We replaced the simple active/inactive checkbox by &lt;a href=&quot;https://bugs.tryton.org/issue7417&quot;&gt;date period on accounts and tax codes&lt;/a&gt;.&lt;br /&gt;
+It is not allowed to create a move using an account at a date outside the period.&lt;br /&gt;
+The accounting reports do not show out of period accounts or tax codes if the report is run for a date out of the period.&lt;br /&gt;
+More over, when an account has an end date defined, we can configure a replacement account to use. in such case, operational document like sale or purchase will use the replacement account automatically. This allows to avoid to update all referential data that were still referring to the old account.&lt;/p&gt;
+&lt;h2&gt;Interface with Chorus Pro&lt;/h2&gt;
+&lt;p&gt;A sets of new modules has been added which allow to &lt;a href=&quot;https://bugs.tryton.org/issue7518&quot;&gt;send invoice to Chorus Pro&lt;/a&gt;. &lt;a href=&quot;https://chorus-pro.gouv.fr/&quot;&gt;Chorus Pro&lt;/a&gt; is the mandatory platform to send electronic invoices for French administration.&lt;br /&gt;
+Currently the format supported is the &lt;a href=&quot;http://tfig.unece.org/contents/cross-industry-invoice-cii.htm&quot;&gt;Cross-Industry-Invoice&lt;/a&gt; (aka 16B-CII) from &lt;a href=&quot;http://www.unece.org/cefact.html&quot;&gt;UN/CEFACT&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Removal of default accounts on journal&lt;/h2&gt;
+&lt;p&gt;We have found that this design was not very optimal because it required for some case to create more journal than needed. So we &lt;a href=&quot;https://bugs.tryton.org/issue7450&quot;&gt;replace them&lt;/a&gt; by write-off methods and payment methods. And for the statement, the journal statement has now an account field.&lt;/p&gt;
+&lt;h2&gt;Spanish tax report&lt;/h2&gt;
+&lt;p&gt;Tryton &lt;a href=&quot;https://bugs.tryton.org/issue7484&quot;&gt;generates automatically the files for tax reporting&lt;/a&gt; that can be imported directly on the tax authority website.&lt;/p&gt;
+&lt;h2&gt;Icons in input&lt;/h2&gt;
+&lt;p&gt;We &lt;a href=&quot;https://bugs.tryton.org/issue7654&quot;&gt;simplified the web design&lt;/a&gt; for the input that has buttons. The input has now a primary and/or secondary icons inside its border. This unclutter the interface and &lt;a href=&quot;https://discuss.tryton.org/t/use-material-design-in-sao/647&quot;&gt;integrate better with bootstrap theme following material design&lt;/a&gt;.&lt;br /&gt;
+&lt;div class=&quot;lightbox-wrapper&quot;&gt;&lt;a class=&quot;lightbox&quot; href=&quot;https://discuss.tryton.org/uploads/default/original/1X/4b5899fd2720715aa95a604c096657b09e9befd0.png&quot; title=&quot;image.png&quot;&gt;&lt;img src=&quot;https://discuss.tryton.org/uploads/default/optimized/1X/4b5899fd2720715aa95a604c096657b09e9befd0_1_690x165.png&quot; alt=&quot;Web client showing input with icons inside&quot; width=&quot;690&quot; height=&quot;165&quot; /&gt;&lt;div class=&quot;meta&quot;&gt;
+&lt;span class=&quot;filename&quot;&gt;image.png&lt;/span&gt;&lt;span class=&quot;informations&quot;&gt;994x239 32 KB&lt;/span&gt;&lt;span class=&quot;expand&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;Attachment drop down&lt;/h2&gt;
+&lt;p&gt;We reworked the &lt;a href=&quot;https://bugs.tryton.org/issue7659&quot;&gt;attachment action to be a drop down&lt;/a&gt; instead of opening a pop-up. This is faster to open the attachments and to add new one. It is still possible to open the pop-up window with the management entry to change or delete them.&lt;br /&gt;
+&lt;img src=&quot;https://discuss.tryton.org/uploads/default/original/1X/c9e79e82cf887355f9f96e6fa2f67135f52e78c8.png&quot; alt=&quot;Attachment drop down&quot; width=&quot;625&quot; height=&quot;326&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;Changes for the developer&lt;/h1&gt;
+&lt;h2&gt;Remove buttons&lt;/h2&gt;
+&lt;p&gt;Now the buttons which depends on fields for which the user has no access, are &lt;a href=&quot;https://bugs.tryton.org/issue7502&quot;&gt;removed automatically&lt;/a&gt; from the view.&lt;/p&gt;
+&lt;h2&gt;Support of timestamp field on client&lt;/h2&gt;
+&lt;p&gt;Until now, such field was using the default field and had no widget associated. But the default field has an empty string as default value which is not valid for a &lt;code&gt;Timestamp&lt;/code&gt;. So now we &lt;a href=&quot;https://bugs.tryton.org/issue6463&quot;&gt;manage &lt;code&gt;Timestamp&lt;/code&gt; field&lt;/a&gt; as a &lt;code&gt;DateTime&lt;/code&gt; field but with the representation of microseconds.&lt;/p&gt;
+&lt;h2&gt;Use sqlite3.backup&lt;/h2&gt;
+&lt;p&gt;Since Python 3.7, the module &lt;a href=&quot;https://docs.python.org/3.7/library/sqlite3.html#sqlite3.Connection.backup&quot;&gt;sqlite3 has a backup method&lt;/a&gt;. This allows to &lt;a href=&quot;https://bugs.tryton.org/issue7212&quot;&gt;remove the dependency on sqlitebck&lt;/a&gt; to use the database cache feature when running tests.&lt;/p&gt;
+&lt;h2&gt;Clean migration &amp;lt; 3.0&lt;/h2&gt;
+&lt;p&gt;We &lt;a href=&quot;https://bugs.tryton.org/issue6470&quot;&gt;removed the migration code&lt;/a&gt; from version older than 3.0.&lt;br /&gt;
+If there are still users of such old version. They must upgrade as soon as possible to a version prior to 5.0 to be able to migrate later. The future rules will be to clean migration for 2 major releases in the past. This force to migrate at least once every 10 years.&lt;/p&gt;
+&lt;h2&gt;Add Timedelta to PYSON&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://tryton-readthedocs.readthedocs.io/projects/server/en/latest/topics/pyson.html&quot;&gt;PYSON&lt;/a&gt; missed an object to represent a timedelta value. As such value could be used in a domain on a field of the same time, we should support it.&lt;/p&gt;
+&lt;h2&gt;Remove unique constraint on attachment&lt;/h2&gt;
+&lt;p&gt;As it was no more useful to have a unique constraint on attachment since &lt;a href=&quot;https://discuss.tryton.org/t/removal-of-dav/304&quot;&gt;Removal of *DAV&lt;/a&gt;, we &lt;a href=&quot;https://bugs.tryton.org/issue7613&quot;&gt;removed the constraint&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Use uWSGI in docker images&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://bugs.tryton.org/issue7616&quot;&gt;images published&lt;/a&gt; by Tryton from series 4.6 are using now &lt;a href=&quot;https://projects.unbit.it/uwsgi&quot;&gt;uWSGI&lt;/a&gt; as default server. This replaces the default server from &lt;a href=&quot;http://werkzeug.pocoo.org/docs/0.14/serving/&quot;&gt;Werzeug&lt;/a&gt; which is not considered production ready.&lt;/p&gt;
+&lt;h2&gt;Use UUID on timesheet lines&lt;/h2&gt;
+&lt;p&gt;In order to prevent &lt;a href=&quot;http://hg.tryton.org/chronos/&quot;&gt;Chronos&lt;/a&gt; (the web extension for timesheet) to create duplicate lines on bad network response time, we &lt;a href=&quot;https://bugs.tryton.org/issue7607&quot;&gt;added a unique UUID field on the lines&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Use passlib to check password&lt;/h2&gt;
+&lt;p&gt;We &lt;a href=&quot;https://bugs.tryton.org/issue4161&quot;&gt;replaced custom password check&lt;/a&gt; by &lt;a href=&quot;https://bitbucket.org/ecollins/passlib&quot;&gt;passlib&lt;/a&gt;, a generic library for password hashing. A &lt;a href=&quot;https://passlib.readthedocs.io/en/stable/narr/context-tutorial.html#loading-saving-a-cryptcontext&quot;&gt;configuration file&lt;/a&gt; for passlib can be set otherwise the default schemes are &lt;code&gt;bcrypt&lt;/code&gt; (if installed) or &lt;code&gt;pbkdf2_sha512&lt;/code&gt;. When the configuration change, the passwords are updated to the new scheme on the next log-in of the user.&lt;br /&gt;
+The migration from older version is done automatically when the user log-in the first time.&lt;/p&gt;
+&lt;h2&gt;New session management&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://discuss.tryton.org/t/double-session-timeout/463&quot;&gt;Double session timeout&lt;/a&gt; has been implemented. So the session expired now after 30 days but some operations like posting an invoice or approve a payment requires a fresh session. A fresh session is a session which has no request interruption longer than 5 minutes since its creation.&lt;br /&gt;
+When a user change his password, all his active sessions are invalidated. This prevent any attacker who had stolen the password to keep a session active after the password change.&lt;/p&gt;
+&lt;h2&gt;Fully configure Tryton with environment variables&lt;/h2&gt;
+&lt;p&gt;In order to simplify the configuration of the &lt;a href=&quot;https://hub.docker.com/r/tryton/tryton/&quot;&gt;docker image&lt;/a&gt;, Tryton will &lt;a href=&quot;https://bugs.tryton.org/issue7620&quot;&gt;parse environment variables&lt;/a&gt; that follows the syntax &lt;code&gt;TRYTOND_&amp;lt;SECTION&amp;gt;__&amp;lt;NAME&amp;gt;&lt;/code&gt;. Such values are set before the load of configuration files.&lt;/p&gt;
+&lt;h2&gt;Load custom CSS and Javascript&lt;/h2&gt;
+&lt;p&gt;The web client will try to &lt;a href=&quot;https://bugs.tryton.org/issue7622&quot;&gt;load &lt;code&gt;custom.css&lt;/code&gt; and &lt;code&gt;custom.js&lt;/code&gt;&lt;/a&gt; by default. This allow to customize it by just serving those files.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://discuss.tryton.org/t/real-time-notification/224&quot;&gt;Real-time notification&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We added a BUS to Tryton. It allows the server to send message to the client. It is using &lt;a href=&quot;https://en.wikipedia.org/wiki/Push_technology#Long_polling&quot;&gt;long polling&lt;/a&gt; as push mechanism.&lt;br /&gt;
+The first usage is the possibility to &lt;a href=&quot;https://tryton-readthedocs.readthedocs.io/projects/server/en/latest/topics/bus.html&quot;&gt;send notification&lt;/a&gt; which are short message with a priority.  The web client display them by using the &lt;a href=&quot;https://www.w3.org/TR/notifications/&quot;&gt;Web Notification&lt;/a&gt; and the desktop client using the &lt;a href=&quot;https://developer.gnome.org/gio/stable/GNotification.html&quot;&gt;GNotification&lt;/a&gt; which unfortunately is not yet implemented on Windows nor MacOS.&lt;/p&gt;
+&lt;h2&gt;Improved &lt;code&gt;ModelStorage.copy&lt;/code&gt;
+&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://tryton-readthedocs.readthedocs.io/projects/server/en/latest/ref/models/models.html#trytond.model.ModelStorage.copy&quot;&gt;&lt;code&gt;copy&lt;/code&gt; method&lt;/a&gt; has been &lt;a href=&quot;https://bugs.tryton.org/issue5576&quot;&gt;extended to have more flexibility on the copy result&lt;/a&gt;.&lt;br /&gt;
+The default dictionary accept a callable as value. It will be called for each copied record with a dictionary of the copied values. It must return the new value for the new record.&lt;br /&gt;
+Also the default dictionary support the dotted notation for the &lt;code&gt;Many2One&lt;/code&gt; keys. In such case, the value will be used as default dictionary to copy the pointed record.&lt;/p&gt;
+            &lt;/blockquote&gt;
+            &lt;p&gt;Posts: 1&lt;/p&gt;
+            &lt;p&gt;Participants: 1&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;https://discuss.tryton.org/t/newsletter-september-2018/629&quot;&gt;Read full topic&lt;/a&gt;&lt;/p&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 06:00:01 +0000</pubDate>
+</item>
+<item>
+	<title>Mike Driscoll: PyDev of the Week: Aisha Bello</title>
+	<guid>http://www.blog.pythonlibrary.org/2018/09/03/pydev-of-the-week-aisha-bello/</guid>
+	<link>http://www.blog.pythonlibrary.org/2018/09/03/pydev-of-the-week-aisha-bello/</link>
+	<description>&lt;div class=&quot;pf-content&quot;&gt;&lt;p&gt;This week we welcome Aisha Bello (&lt;a href=&quot;https://twitter.com/aishaxbello&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;@AishaXBello&lt;/a&gt;) as our PyDev of the Week! Aisha is the founder of PyLadies Nigeria and is passionate about STEM in developing countries. She is also an organizer for DjangoGirls in Africa. Aisha has gone around the world speaking talking about Python at EuroPython, DjangoCon, Python Brasil and the PyData conferences. Let&amp;#8217;s take a few moments to get to know her better!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Can you tell us a little about yourself (hobbies, education, etc):&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Currently I work as a Virtual Systems Engineer in the Data Center and Virtualisation practice for Cisco, Nigeria. I completed a Masters in Information Technology from Cardiff Metropolitan, where I worked on a Data Science project for the hospitality industry. I am very passionate about women empowerment and tech education in developing countries.&lt;/p&gt;
+&lt;p&gt;When I am not working you would catch me watching a movie, going for a gym class or exploring new places.&lt;span id=&quot;more-7577&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why did you start using Python?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I started Python when I attended a DjangoGirls event at Europython back in 2015. That was my very first encounter with Python. and I remember asking myself in the midst of the workshop “Where have you been all my life”. The ‘you’ being ‘Python’. This is coming from a girl who gave up on programming as a whole, because she couldn’t quite grasp the concepts of the languages she had learned in school. Back then I only wanted to learn enough Java or C to finish a school project or just pass the exam. I was totally convinced that programming was for the first class and genius students , definitely not me. Now when I look back it wasn’t the concepts that was too complex to understand, but the way the other languages interpreted those concepts was complicated at least for me. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How did you get started with DjangoGirls and PyLadies?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When I attended my first DjangoGirls event in Bilbao, and stayed for the entire conference. I remember going back home and was so fired up to bring such an amazing opportunity back home to women in Nigeria, to show them that they too could code. That being a makeup artist or fashion designer wasn’t all that we could be good for like some of us are conditioned to believe. From there on the Python Nigeria community was born. After the DjangoGirls event I was looking for a way to help the ladies that attended continue their learnings, and PyLadies Nigeria was born. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What other programming languages do you know and which is your favorite?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;While in school I played around “textbook style” with C, C++, Java, and I have done a bit of Javascript too in the past. When I had just finished my undergrad I started a makeup and hair business and built a website for my business using the ‘good ol’ HTML &amp;#038; CSS. I would say Python still is my favorite. It was so easy and much less complicated to start out building things with Python, but most importantly Echoing the words of a wise man, Brett Cannon ; I came for the Language but stayed for the community. I can’t even begin to explain how powerful that is.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What projects are you working on now?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the projects I am most proud of is the Python Community in Nigeria, how and where we started and how far we have come. We went from 1 DjangoGirls workshop in 2016, to a community of 1200 people with over 50 events happening all over the country in form of other events; DjangoGirls, Pyladies, PyData and now Python Nigeria meetups. I am most excited about the Python Conference coming up in September where over 250 pythonistas will be under the same roof sharing and talking about Python in different domains.&lt;/p&gt;
+&lt;p&gt;Funny thing is it’s been almost a year since I bought a personal domain name where I was going to build my site from scratch, and also start writing again, breaking down networking concepts for developers, inspired by my PyData talk last year. I guess we would see &lt;img src=&quot;https://s.w.org/images/core/emoji/11/72x72/1f642.png&quot; alt=&quot;🙂&quot; class=&quot;wp-smiley&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Which Python framework or libraries are your favorite (core or 3rd party)?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Not sure I would use the word favorite. I started Python by learning Django and went on to do my first Data Science ML Project with Scikit-Learn. And now that I deal with a lot of API’s, I can’t do without the Requests library .&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Is there anything else you’d like to say?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If I could say one thing to my younger self it would be “Never underestimate yourself. You are smart enough, good enough, You are enough. Keep pushing, keep climbing and never give up”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Thanks for doing the interview, Aisha!&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a class=&quot;a2a_button_facebook&quot; href=&quot;https://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Fwww.blog.pythonlibrary.org%2F2018%2F09%2F03%2Fpydev-of-the-week-aisha-bello%2F&amp;linkname=PyDev%20of%20the%20Week%3A%20Aisha%20Bello&quot; title=&quot;Facebook&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;a class=&quot;a2a_button_twitter&quot; href=&quot;https://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Fwww.blog.pythonlibrary.org%2F2018%2F09%2F03%2Fpydev-of-the-week-aisha-bello%2F&amp;linkname=PyDev%20of%20the%20Week%3A%20Aisha%20Bello&quot; title=&quot;Twitter&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;a class=&quot;a2a_button_google_plus&quot; href=&quot;https://www.addtoany.com/add_to/google_plus?linkurl=http%3A%2F%2Fwww.blog.pythonlibrary.org%2F2018%2F09%2F03%2Fpydev-of-the-week-aisha-bello%2F&amp;linkname=PyDev%20of%20the%20Week%3A%20Aisha%20Bello&quot; title=&quot;Google+&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;a class=&quot;a2a_dd addtoany_share_save addtoany_share&quot; href=&quot;https://www.addtoany.com/share#url=http%3A%2F%2Fwww.blog.pythonlibrary.org%2F2018%2F09%2F03%2Fpydev-of-the-week-aisha-bello%2F&amp;title=PyDev%20of%20the%20Week%3A%20Aisha%20Bello&quot;&gt;&lt;/a&gt;&lt;/p&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 05:05:20 +0000</pubDate>
+</item>
+<item>
+	<title>Techiediaries - Django: React Basics Tutorial for Django Developers [2018]</title>
+	<guid>https://www.techiediaries.com/react-tutorial/</guid>
+	<link>https://www.techiediaries.com/react-tutorial/</link>
+	<description>&lt;p&gt;In this tutorial, We'll introduce React basics to Django developers. You can use React to build UIs using re-usable &lt;a href=&quot;https://en.wikipedia.org/wiki/Component-based_software_engineering&quot;&gt;components&lt;/a&gt; which allow maximum reusability and a &lt;a href=&quot;https://www.techiediaries.com/tag/django/index.xml&quot;&gt;virtual DOM&lt;/a&gt; that provides better performance.&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, we'll learn how to &lt;a href=&quot;https://www.techiediaries.com/react-tutorial#Including_React_in_Django_Templates&quot;&gt;include React in a Django template&lt;/a&gt; and learn about the basics of React such as &lt;strong&gt;components, state and props&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;But what's virtual DOM? This is the &lt;a href=&quot;https://reactjs.org/docs/faq-internals.html&quot;&gt;definition from the official React website&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM. This process is called reconciliation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;React&lt;/strong&gt; is nowadays-2018-the most popular front-end library for building User Interfaces. Throughout this tutorial we'll go through a basic understanding of React.js by creating a React application from scratch and step by step. We will focus on the core features of React. After getting the core concepts, you can dive into more learning more comfortably.&lt;/p&gt;
+
+&lt;p&gt;By following this tutorial, you'll learn:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;How to get started with React using a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to include React in a Django template;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What's a React component;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to create React components;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to use the &lt;code&gt;ReactDOM&lt;/code&gt; library to mount your React app into the DOM;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to handle data in React;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The difference between props and state in React;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to use props;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to use state;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How to mutate or update state in React etc.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;React provides a set of modern features such as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A component based architecture;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reusable components;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stateful and stateless components;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;And virtual dom.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Getting Started with React&lt;/h2&gt;
+
+&lt;p&gt;Since we are getting started with React, we are not going to use complicated tools such as &lt;code&gt;create-react-app&lt;/code&gt; (In fact this tool was created to make creating React applications less complex without worrying about Webpack and complex front-end tooling), instead we'll use a simple setup i.e the old way of using libraries in front-end web development.&lt;/p&gt;
+
+&lt;p&gt;Start by creating a basic HTML page:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;React Tutorial&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now use the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag to include &lt;code&gt;React&lt;/code&gt; and &lt;code&gt;ReactDOM&lt;/code&gt; libraries. In the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; of your HTML page, add:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You also need to include Babel:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/babel-standalone@6.15.0/babel.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We are using the &lt;code&gt;unpkg.com&lt;/code&gt; service which allows us to import NPM modules as normal JavaScript scripts without using npm and related modern front-end tools to install and use the dependencies.&lt;/p&gt;
+
+&lt;p&gt;Since React makes use of modern JavaScript features, we use Babel which is transpiler that transpiles the ES6 features to JavaScript features that can be interprited by most existing browsers.&lt;/p&gt;
+
+&lt;p&gt;We also use Babel for transforming JSX templates (used by React to include HTML in JavaScript) into JavaScript.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;We are loading React from a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag, you can also use modern tools like npm and the import/require system when building complex apps.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we need to add a root &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; where we'll mount our React application.&lt;/p&gt;
+
+&lt;p&gt;Inside the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; element, add the following HTML:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also, inside the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; tag, add the following &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; where we're going to add the React code:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;text/babel&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/* React code */&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At this step, you can install an http server so you can run the example on your browser or simply use &lt;a href=&quot;https://codepen.io/techiediaries/pen/WgpPrb&quot;&gt;codepen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;Including_React_in_Django_Templates&quot;&gt;Including React in Django Templates&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;In this section, we'll see how to include React in Django templates. Django has a powerful template system that makes use of inheritance to reduce repetition and augment code reuse so let's start by creating the &lt;code&gt;base.html&lt;/code&gt; template inside the &lt;code&gt;templates&lt;/code&gt; folder and add the following HTML:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+{% load static %}
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IE=edge&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Django &lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt; React Tutorial&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/babel-standalone@6.15.0/babel.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;noscript&amp;gt;&lt;/span&gt;You need to enable JavaScript to continue with this application.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+{% block inner %}
+
+{% endblock %}
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create an &lt;code&gt;index.html&lt;/code&gt; template that extends the &lt;code&gt;base.html&lt;/code&gt; template and add the following content:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;
+{% extends &quot;base.html&quot; %}
+
+
+
+{% block inner %}
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/babel&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/* React code here */&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+{% endblock %}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;React Components&lt;/h2&gt;
+
+&lt;p&gt;In React, you build your UI as a hierarchy of components. A component controls a part of the UI and It's simply a JavaScript/ES6 class that extends the base &lt;code&gt;React.Component&lt;/code&gt;. For example, this is a simple &lt;code&gt;HelloWorld&lt;/code&gt; component:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;  &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;World&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The component simply renders a &lt;code&gt;&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;&lt;/code&gt;. We use the &lt;code&gt;render()&lt;/code&gt; method which is provided by the parent &lt;code&gt;React.Component&lt;/code&gt;. &lt;strong&gt;The &lt;code&gt;render()&lt;/code&gt; method should return what your component needs to render on the screen&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In React, you can use different types of components such as &lt;strong&gt;parent&lt;/strong&gt; and &lt;strong&gt;child&lt;/strong&gt; components. You will also make use of &lt;strong&gt;smart&lt;/strong&gt; and &lt;strong&gt;dump&lt;/strong&gt; components. &lt;strong&gt;A smart component maintains state while a dump component doesn't maintain any state&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Components have many benefits. The most important benefit for a developer is code-reuse i.e you can reuse your components in the same app or throughout multiple apps.  &lt;/p&gt;
+
+&lt;h2&gt;Using ReactDOM&lt;/h2&gt;
+
+&lt;p&gt;Now that we have a basic React component that renders something on the screen and a simple HTML page, we need to mount the simple React application in the HTML body of our page. For this matter, we need to use the &lt;code&gt;ReactDOM&lt;/code&gt; library.&lt;/p&gt;
+
+&lt;p&gt;Before the closing &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; tag, add the following code within a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We use the &lt;code&gt;render()&lt;/code&gt; method to mount the our top-level and only component into the root &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; which we grab using the &lt;code&gt;document.getElementById(&amp;quot;root&amp;quot;)&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;This will be enough to mount our React component. You should now see a &lt;em&gt;Hello World&lt;/em&gt; on the screen.&lt;/p&gt;
+
+&lt;h2&gt;Handling Data in React&lt;/h2&gt;
+
+&lt;p&gt;You can make use of data in React using two forms: &lt;code&gt;props&lt;/code&gt; and &lt;code&gt;state&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Props are used to communicate or pass data between components and they are external to the component while state is used to maintain the internal state of a component.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A React component can change its internal state directly but not the props.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Understanding React Props&lt;/h2&gt;
+
+&lt;p&gt;Props allow you to pass data to a component which allows for maximum re-usability of the component.&lt;/p&gt;
+
+&lt;p&gt;Let's, for example change our previous &lt;strong&gt;HelloWorld&lt;/strong&gt; component to be more dynamic by rendering a message that's passed via a prop instead of always rendering &lt;em&gt;Hello World&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can pass a &lt;em&gt;message&lt;/em&gt; prop to the component using the following syntax:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello React&quot;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;The prop is called &lt;em&gt;message&lt;/em&gt;, you can use any meaningful name for your prop. The &lt;em&gt;message&lt;/em&gt; prop takes a &lt;em&gt;Hello React&lt;/em&gt; value.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we need to change the component to handle the prop:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;  &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We access the props in our component by using the &lt;code&gt;this.props&lt;/code&gt; object. Since this is JavaScript code we include it inside curly braces which tells JSX to interpret and render the result.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;As you can see this allows us to use the component to render different messages instead of just the &lt;em&gt;Hello World&lt;/em&gt; message.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Understanding React State&lt;/h2&gt;
+
+&lt;p&gt;A component in React can maintain its own internal state using a &lt;strong&gt;state&lt;/strong&gt; object. The component that maintains a state is called a &lt;strong&gt;smart component&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let's now add state to our previous component:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;  &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;Hello React!&quot;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/p&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the constructor of the component, we simply assign a JavaScript object to &lt;code&gt;this.state&lt;/code&gt; to initialize it.&lt;/p&gt;
+
+&lt;p&gt;The message is now a part of the internal state of the component.&lt;/p&gt;
+
+&lt;p&gt;We can access the state using &lt;code&gt;this.state&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Mutating/Changing State in React&lt;/h3&gt;
+
+&lt;p&gt;To mutate or change state in your React component, you simply need to use the &lt;code&gt;this.setState()&lt;/code&gt; method. For example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;Hello Again&quot;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial, we've quickly gone through the basic concepts of React. &lt;/p&gt;</description>
+	<pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Test and Code: 46: Testing Hard To Test Applications - Anthony Shaw</title>
+	<guid>https://testandcode.com/46</guid>
+	<link>https://testandcode.com/46</link>
+	<description>&lt;p&gt;How do you write tests for things that aren’t that easy to write tests for?&lt;/p&gt;
+
+&lt;p&gt;That question is a possibly terrible summary of a question sent to me by a listener. And to help me start answering that question, I asked a friend of mine to help, Antony Shaw.&lt;/p&gt;
+
+&lt;p&gt;Of course, different types of applications have different test strategies, so there’s not a universal answer. But I know some of you out there have experience and expertise around how to tackle this problem.&lt;/p&gt;
+
+&lt;p&gt;Listen to the discussion Anthony and I have about it, and let me know if you have some techniques or tips to add. &lt;/p&gt;&lt;p&gt;Special Guest: Anthony Shaw.&lt;/p&gt;&lt;p&gt;Sponsored By:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a rel=&quot;nofollow&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&gt;Patreon Supporters&lt;/a&gt;: &lt;a rel=&quot;nofollow&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&gt;Help support the show with as little as $1 per month.
+Funds help pay for expenses associated with the show.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a rel=&quot;payment&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&gt;Support Test and Code&lt;/a&gt;&lt;/p&gt;&amp;lt;p&amp;gt;How do you write tests for things that aren’t that easy to write tests for?&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;That question is a possibly terrible summary of a question sent to me by a listener. And to help me start answering that question, I asked a friend of mine to help, Antony Shaw.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Of course, different types of applications have different test strategies, so there’s not a universal answer. But I know some of you out there have experience and expertise around how to tackle this problem.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Listen to the discussion Anthony and I have about it, and let me know if you have some techniques or tips to add. &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;Special Guest: Anthony Shaw.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;Sponsored By:&amp;lt;/p&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;a rel=&quot;nofollow&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&amp;gt;Patreon Supporters&amp;lt;/a&amp;gt;: &amp;lt;a rel=&quot;nofollow&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&amp;gt;Help support the show with as little as $1 per month.
+Funds help pay for expenses associated with the show.&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;p&amp;gt;&amp;lt;a rel=&quot;payment&quot; href=&quot;https://www.patreon.com/testpodcast&quot;&amp;gt;Support Test and Code&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;</description>
+	<pubDate>Sun, 02 Sep 2018 15:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>PyBites: PyBites Twitter Digest - Issue 28, 2018</title>
+	<guid>https://pybit.es/twitter_digest_201828.html</guid>
+	<link>https://pybit.es/twitter_digest_201828.html</link>
+	<description>&lt;h3&gt;How to find stuff in Git&lt;/h3&gt;
+&lt;p&gt;Submitted by @clamytoe.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;“How to find stuff in Git” by &lt;a href=&quot;https://twitter.com/@tygertec&quot; target=&quot;_blank&quot;&gt;@tygertec&lt;/a&gt; &lt;a href=&quot;https://t.co/koyvqy10j1&quot; title=&quot;https://t.co/koyvqy10j1&quot; target=&quot;_blank&quot;&gt;https://t.co/koyvqy10j1&lt;/a&gt;&lt;/p&gt;— Christopher Ross (@crossphd) &lt;a href=&quot;https://twitter.com/crossphd/status/1035654575884328961&quot;&gt;August 31, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Exposed user TLS Certificate Private Keys... not good!&lt;/h3&gt;
+&lt;p&gt;Submitted by @dgjustice.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;All those who use &lt;a href=&quot;https://twitter.com/search/#Traefik&quot; target=&quot;_blank&quot;&gt;#Traefik&lt;/a&gt; &lt;a href=&quot;https://t.co/yKDNf5iI0v&quot; title=&quot;https://t.co/yKDNf5iI0v&quot; target=&quot;_blank&quot;&gt;https://t.co/yKDNf5iI0v&lt;/a&gt;&lt;/p&gt;— Avishay (@AvishaySaban) &lt;a href=&quot;https://twitter.com/AvishaySaban/status/1035159331879231488&quot;&gt;August 30, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Documentation is so important. This is a great idea!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;“A Simple Tutorial on How to document your &lt;a href=&quot;https://twitter.com/search/#Python&quot; target=&quot;_blank&quot;&gt;#Python&lt;/a&gt; Project using &lt;a href=&quot;https://twitter.com/search/#Sphinx&quot; target=&quot;_blank&quot;&gt;#Sphinx&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/search/#Rinohtype”&quot; target=&quot;_blank&quot;&gt;#Rinohtype”&lt;/a&gt; by Rich Yap &lt;a href=&quot;https://t.co/Pn56gqrA4c&quot; title=&quot;https://t.co/Pn56gqrA4c&quot; target=&quot;_blank&quot;&gt;https://t.co/Pn56gqrA4c&lt;/a&gt;&lt;/p&gt;— Pybites (@pybites) &lt;a href=&quot;https://twitter.com/pybites/status/1032540212851818502&quot;&gt;August 23, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Had no idea the PSF had a job board! Check it out!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@ThePSF:&quot; target=&quot;_blank&quot;&gt;@ThePSF:&lt;/a&gt; Looking for a job doing what you love with Python? Check out &lt;a href=&quot;https://t.co/HfrDboAVbd&quot; title=&quot;https://t.co/HfrDboAVbd&quot; target=&quot;_blank&quot;&gt;https://t.co/HfrDboAVbd&lt;/a&gt; - there are currently over 170 jobs on the…&lt;/p&gt;— Brett Cannon (@brettsky) &lt;a href=&quot;https://twitter.com/brettsky/status/1034820092654116864&quot;&gt;August 29, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Another quality RealPy article: Advanced Git Tips for Python Devs&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;📰 Advanced Git Tips for 🐍Python Developers &lt;a href=&quot;https://t.co/ovWfaPcd2W&quot; title=&quot;https://t.co/ovWfaPcd2W&quot; target=&quot;_blank&quot;&gt;https://t.co/ovWfaPcd2W&lt;/a&gt;&lt;/p&gt;— Real Python (@realpython) &lt;a href=&quot;https://twitter.com/realpython/status/1033823032186494978&quot;&gt;August 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Nice! An A-Z of useful Python tricks&lt;/h3&gt;
+&lt;p&gt;Submitted by @Erik.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;An A-Z of useful Python tricks &lt;a href=&quot;https://t.co/5ouBpmSGff&quot; title=&quot;https://t.co/5ouBpmSGff&quot; target=&quot;_blank&quot;&gt;https://t.co/5ouBpmSGff&lt;/a&gt;&lt;/p&gt;— freeCodeCamp.org (@freeCodeCamp) &lt;a href=&quot;https://twitter.com/freeCodeCamp/status/1034848710197428224&quot;&gt;August 29, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;No reason why you shouldn't be a member of the PSF! Get on it!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@ThePSF:&quot; target=&quot;_blank&quot;&gt;@ThePSF:&lt;/a&gt; Basic membership in the Python Software Foundation is free. Join here: &lt;a href=&quot;https://t.co/W2H2ShVTDr&quot; title=&quot;https://t.co/W2H2ShVTDr&quot; target=&quot;_blank&quot;&gt;https://t.co/W2H2ShVTDr&lt;/a&gt;&lt;/p&gt;— Betsy Waliszewski (@betswaliszewski) &lt;a href=&quot;https://twitter.com/betswaliszewski/status/1036019610389102593&quot;&gt;September 01, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Such a wonderful initiative to support young women with coding!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;Last week marked the end of our biggest summer ever! THANK YOU to everyone who supported the 50 Kode With Klossy ca… &lt;a href=&quot;https://t.co/Sdubz2cFvl&quot; title=&quot;https://t.co/Sdubz2cFvl&quot; target=&quot;_blank&quot;&gt;https://t.co/Sdubz2cFvl&lt;/a&gt;&lt;/p&gt;— Kode With Klossy (@kodewithklossy) &lt;a href=&quot;https://twitter.com/kodewithklossy/status/1033683437729841152&quot;&gt;August 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Asycnio socket tutorial&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;Short overview of what it's like to write a &lt;a href=&quot;https://twitter.com/search/#python&quot; target=&quot;_blank&quot;&gt;#python&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search/#asyncio&quot; target=&quot;_blank&quot;&gt;#asyncio&lt;/a&gt; socket server from &lt;a href=&quot;https://twitter.com/@pgjones&quot; target=&quot;_blank&quot;&gt;@pgjones&lt;/a&gt; - An Asyncio socket tutori… &lt;a href=&quot;https://t.co/dIC9Hf59Xl&quot; title=&quot;https://t.co/dIC9Hf59Xl&quot; target=&quot;_blank&quot;&gt;https://t.co/dIC9Hf59Xl&lt;/a&gt;&lt;/p&gt;— Cristian Medina (@tryexceptpass) &lt;a href=&quot;https://twitter.com/tryexceptpass/status/1034089420696285184&quot;&gt;August 27, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Learning Python: From Zero to Hero. A great intro!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@Cindybarriento5:&quot; target=&quot;_blank&quot;&gt;@Cindybarriento5:&lt;/a&gt; Scanning for additional resources on understanding classes a bit better and found this awesome article detailing &lt;a href=&quot;https://twitter.com/search/#pyth…&quot; target=&quot;_blank&quot;&gt;#pyth…&lt;/a&gt;&lt;/p&gt;— Jason Wattier (@jmwatt3) &lt;a href=&quot;https://twitter.com/jmwatt3/status/1035327361946972160&quot;&gt;August 31, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Super interesting episode of the Talk Python Podcast! A definite trend in network engineering these days&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;Here's &lt;a href=&quot;https://twitter.com/@talkpython&quot; target=&quot;_blank&quot;&gt;@talkpython&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search/#175:&quot; target=&quot;_blank&quot;&gt;#175:&lt;/a&gt; Teaching Python to network engineers with &lt;a href=&quot;https://twitter.com/@hfpreston&quot; target=&quot;_blank&quot;&gt;@hfpreston&lt;/a&gt; from &lt;a href=&quot;https://twitter.com/@CiscoDevNet&quot; target=&quot;_blank&quot;&gt;@CiscoDevNet&lt;/a&gt; &lt;a href=&quot;https://t.co/WMSDw08k9z&quot; title=&quot;https://t.co/WMSDw08k9z&quot; target=&quot;_blank&quot;&gt;https://t.co/WMSDw08k9z&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search/#DevNet&quot; target=&quot;_blank&quot;&gt;#DevNet&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search/#NetDevOps&quot; target=&quot;_blank&quot;&gt;#NetDevOps&lt;/a&gt;&lt;/p&gt;— Talk Python Podcast (@TalkPython) &lt;a href=&quot;https://twitter.com/TalkPython/status/1035898321657901056&quot;&gt;September 01, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;An awesome deep learning demo!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@iamtrask:&quot; target=&quot;_blank&quot;&gt;@iamtrask:&lt;/a&gt; This is still one of the most impressive Deep Learning demos of 2018 - huge opportunity for new open-source Web Development t…&lt;/p&gt;— TestDriven.io (@testdrivenio) &lt;a href=&quot;https://twitter.com/testdrivenio/status/1035523639200759808&quot;&gt;August 31, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Agreed! Have to put yourself out there no matter what. That's how PyBites started!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@sam2code:&quot; target=&quot;_blank&quot;&gt;@sam2code:&lt;/a&gt; -- What's the best advice you've ever received? -- &quot;When given a choice, choose the thing that scares you a little. If it's…&lt;/p&gt;— Programming Wisdom (@CodeWisdom) &lt;a href=&quot;https://twitter.com/CodeWisdom/status/1035869127930507265&quot;&gt;September 01, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;What a project! Run Python in your browser!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@randal_olson:&quot; target=&quot;_blank&quot;&gt;@randal_olson:&lt;/a&gt; This looks big: pyodide, the scientific &lt;a href=&quot;https://twitter.com/search/#Python&quot; target=&quot;_blank&quot;&gt;#Python&lt;/a&gt; stack compiled to WebAssembly. Run Python *locally* in your browser, inte…&lt;/p&gt;— Jake VanderPlas (@jakevdp) &lt;a href=&quot;https://twitter.com/jakevdp/status/1033174893586657280&quot;&gt;August 25, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Ha!&lt;/h3&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/@arongriffis:&quot; target=&quot;_blank&quot;&gt;@arongriffis:&lt;/a&gt; Working on a new Bash book. So far: Intro: You chose the wrong tool. Ch 1: Have you considered Python? Ch 2: Try calling P…&lt;/p&gt;— Ned Batchelder (@nedbat) &lt;a href=&quot;https://twitter.com/nedbat/status/1032992702982438912&quot;&gt;August 24, 2018&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pybites&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Julian&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Calm&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Code&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Python&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description>
+	<pubDate>Sun, 02 Sep 2018 13:44:52 +0000</pubDate>
+</item>
+<item>
+	<title>DSPIllustrations.com: The Prime Music, Staircase and Riemann Hypothesis</title>
+	<guid>https://dspillustrations.com/pages/posts/math/the-prime-music-staircase-and-riemann-hypothesis.html</guid>
+	<link>https://dspillustrations.com/pages/posts/math/the-prime-music-staircase-and-riemann-hypothesis.html</link>
+	<description>&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h1 id=&quot;The-Prime-Numbers&quot;&gt;The Prime Numbers' Music, Staircase and Riemann Hypothesis&lt;a class=&quot;anchor-link&quot; href=&quot;http://dspillustrations.com/static/dspillustrations.rss.xml#The-Prime-Numbers&quot;&gt;¶&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;For DSP, mathematics is a fundamental tool to understand the different techniques. Hence, I'm also interested in different aspects of mathematics. And what aspect could be more &quot;pure&quot; mathematics than number theory and prime numbers? In this regard, to at least understand the still unsolved Riemann Hypothesis, where a price money of 1,000,000 will be given to the one who proves or disproves it, has been bothering me for quite some time. Despite a lot of material about the hypothesis being online, it was the book of Barry Mazur and William Stein entitled &lt;a href=&quot;http://dspillustrations.com/static/steinmazur_rh&quot;&gt;&quot;Prime Numbers and the Riemann Hypothesis&quot;&lt;/a&gt; which provided me at least a superficial understanding of it.&lt;/p&gt;
+&lt;p&gt;The nice thing about this book is its very simple approach, requiring not more than high school math. Each page contains graphs and illustrations of the analyzed functions and hence makes it quite easy to follow. Accordingly, it's a very nice book to get to know a bit about the Riemann Hypothesis (RH). However, admittedly, the mathematical treatment is intentionally quite superficial.&lt;/p&gt;
+&lt;p&gt;In this notebook, I do not want to directly talk about the RH. Instead, the notebook arose when I tried to replicate some calculations from the ...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Sat, 01 Sep 2018 23:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Real Python: We're Celebrating 1 Million Page Views per Month!</title>
+	<guid>https://realpython.com/one-million-pageviews-celebration/</guid>
+	<link>https://realpython.com/one-million-pageviews-celebration/</link>
+	<description>&lt;p&gt;They say people come to Python for the language and stay for the community. We couldn&amp;rsquo;t agree more! You mean the world to us, and we are honored to have you as a reader! &lt;/p&gt;
+&lt;p&gt;Today, we&amp;rsquo;re celebrating reaching &lt;strong&gt;1,000,000 monthly page views&lt;/strong&gt; at realpython.com.&lt;/p&gt;
+&lt;p&gt;We are so thankful to you and the rest of the Python community for helping us reach this milestone. More than one million views a month is a mind-blowing number to us&amp;mdash;and it means much more to us than the increase in server fees 😉&lt;/p&gt;
+&lt;p&gt;Reaching this milestone shows us that we are providing you with the resources you need to grow as a developer, and that fills us with joy. &lt;/p&gt;
+&lt;p&gt;We write comprehensive tutorials twice a week because we care about teaching. We are all passionate Pythonistas, and we want everyone to know that the Python community can be their home, too. &lt;/p&gt;
+&lt;p&gt;To show our appreciation, we have decided to give away some of our paid Python courses and books as a big thank you to the community for your continued support. &lt;/p&gt;
+&lt;h2 id=&quot;heres-how-its-going-to-work&quot;&gt;Here&amp;rsquo;s How It&amp;rsquo;s Going to Work&lt;/h2&gt;
+&lt;p&gt;The contest will run from &lt;strong&gt;September 1st to September 30th&lt;/strong&gt;. At the end of the contest, a random entrant will be picked to receive the Grand Prize. Each week, throughout the contest, we will randomly pick winners for smaller prizes. &lt;/p&gt;
+&lt;p&gt;To &lt;a href=&quot;https://realpython.com/giveaway&quot;&gt;enter the contest&lt;/a&gt;, you can do any of the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Share the contest&lt;/li&gt;
+&lt;li&gt;Follow us on Twitter&lt;/li&gt;
+&lt;li&gt;Follow us on Facebook &lt;/li&gt;
+&lt;li&gt;Follow us on Instagram&lt;/li&gt;
+&lt;li&gt;Subscribe to our YouTube channel&lt;/li&gt;
+&lt;li&gt;Subscribe to our newsletter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;prizes-you-can-win&quot;&gt;Prizes You Can Win&lt;/h2&gt;
+&lt;p&gt;Now for the part you&amp;rsquo;ve been waiting for&amp;mdash;the prizes!&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s what we are giving away each week:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Week 1:&lt;/strong&gt; &lt;a href=&quot;https://realpython.com/products/managing-python-dependencies/&quot;&gt;Managing Python Dependencies Course&lt;/a&gt; &lt;em&gt;(worth $49)&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Week 2:&lt;/strong&gt; &lt;a href=&quot;https://realpython.com/products/python-tricks-book/&quot;&gt;Python Tricks eBook + Videos Bundle&lt;/a&gt; &lt;em&gt;(worth $29)&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Week 3:&lt;/strong&gt; &lt;a href=&quot;https://realpython.com/products/pythonic-wallpapers/&quot;&gt;The Pythonic Wallpapers Pack&lt;/a&gt; &lt;em&gt;(worth $9.99)&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Week 4:&lt;/strong&gt; &lt;a href=&quot;https://realpython.com/products/real-python-course/&quot;&gt;All three Real Python Courses&lt;/a&gt; &lt;em&gt;(worth $60)&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The Grand Prize at the end of the month includes the following:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All three Real Python courses &lt;em&gt;(worth $60)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Python Tricks eBook + Videos Bundle &lt;em&gt;(worth $29)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Managing Python Dependencies Course &lt;em&gt;(worth $49)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;The Pythonic Wallpapers Pack &lt;em&gt;(worth $9.99)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;A Real Python mug and shirt from &lt;a href=&quot;https://nerdlettering.com/&quot;&gt;Nerdlettering.com&lt;/a&gt; &lt;em&gt;(worth $60)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;This adds up to a total value of over $200.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;how-to-enter-the-giveaway-contest&quot;&gt;How to Enter the Giveaway Contest&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s easy! Just click the link below:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://realpython.com/giveaway&quot;&gt;Join the Real Python contest for a chance to win »&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&quot;https://realpython.com/team/&quot;&gt;all of us at Real Python&lt;/a&gt;, thank you! We truly appreciate all the shares, comments, and feedback you have taken the time to provide. It helps us to continually learn as teachers and ensures we are providing the best tutorials and content we can to help you grow as a developer.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the contest link again:&lt;/p&gt;
+&lt;p class=&quot;text-center&quot;&gt;&lt;strong&gt;&lt;a href=&quot;https://realpython.com/giveaway&quot;&gt;Enter for your chance to walk away with over $200 of prizes »&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p&gt;&lt;em&gt;[ Improve Your Python With 🐍 Python Tricks 💌 – Get a short &amp;amp; sweet Python Trick delivered to your inbox every couple of days. &lt;a href=&quot;https://realpython.com/python-tricks/?utm_source=realpython&amp;utm_medium=rss&amp;utm_campaign=footer&quot;&gt;&amp;gt;&amp;gt; Click here to learn more and see examples&lt;/a&gt; ]&lt;/em&gt;&lt;/p&gt;</description>
+	<pubDate>Sat, 01 Sep 2018 15:31:08 +0000</pubDate>
+</item>
+<item>
+	<title>Weekly Python StackOverflow Report: (cxli) stackoverflow python report</title>
+	<guid>http://python-weekly.blogspot.com/2018/09/cxli-stackoverflow-python-report.html</guid>
+	<link>http://python-weekly.blogspot.com/2018/09/cxli-stackoverflow-python-report.html</link>
+	<description>These are the ten most rated questions at &lt;a href=&quot;http://www.stackoverflow.com/&quot;&gt;Stack Overflow&lt;/a&gt; last week.&lt;br /&gt;Between brackets: [&lt;b&gt;question score&lt;/b&gt; / answers count]&lt;br /&gt;Build date: 2018-09-01 12:22:38 GMT&lt;br /&gt;&lt;hr /&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52094533&quot; target=&quot;_blank&quot;&gt;Filter integers in numpy float array&lt;/a&gt; - [&lt;b&gt;16&lt;/b&gt;/6]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52033242&quot; target=&quot;_blank&quot;&gt;How to sum elements in list of dictionaries if two key values are the same&lt;/a&gt; - [&lt;b&gt;10&lt;/b&gt;/3]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52045377&quot; target=&quot;_blank&quot;&gt;Python is, == operator precedence&lt;/a&gt; - [&lt;b&gt;10&lt;/b&gt;/2]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52029529&quot; target=&quot;_blank&quot;&gt;Removing dupes in list of lists in Python&lt;/a&gt; - [&lt;b&gt;9&lt;/b&gt;/4]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52122632&quot; target=&quot;_blank&quot;&gt;Why is `function` not a keyword in Python?&lt;/a&gt; - [&lt;b&gt;9&lt;/b&gt;/3]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52050990&quot; target=&quot;_blank&quot;&gt;Why does TensorFlow always use GPU 0?&lt;/a&gt; - [&lt;b&gt;9&lt;/b&gt;/0]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52109456&quot; target=&quot;_blank&quot;&gt;Is it possible to refer to the owner class that an object belongs to as an attribute?&lt;/a&gt; - [&lt;b&gt;8&lt;/b&gt;/3]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52034983&quot; target=&quot;_blank&quot;&gt;how is total loss calculated over multiple classes in Keras?&lt;/a&gt; - [&lt;b&gt;8&lt;/b&gt;/1]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52063999&quot; target=&quot;_blank&quot;&gt;Merge pairs on common integer with restrictions&lt;/a&gt; - [&lt;b&gt;8&lt;/b&gt;/1]&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/52080799&quot; target=&quot;_blank&quot;&gt;taking the first non null in python&lt;/a&gt; - [&lt;b&gt;7&lt;/b&gt;/3]&lt;/li&gt;&lt;/ol&gt;</description>
+	<pubDate>Sat, 01 Sep 2018 12:23:00 +0000</pubDate>
+</item>
+<item>
+	<title>Vinay Sajip: Setting up a UK keyboard layout for XRDP on Raspbian Stretch</title>
+	<guid>http://pymolurus.blogspot.com/2018/09/setting-up-uk-keyboard-layout-for-xrdp.html</guid>
+	<link>http://pymolurus.blogspot.com/2018/09/setting-up-uk-keyboard-layout-for-xrdp.html</link>
+	<description>&lt;p&gt;When I set up &lt;code&gt;xrdp&lt;/code&gt; on Raspbian Jessie a while ago, the keyboard layout appeared to be wrong - commonly used keys seemed to be returning US keycodes rather than UK ones. I found &lt;a href=&quot;https://component-parts.blogspot.com/2012/08/fixing-uk-keyboard-mapping-for-xrdp.html&quot;&gt;this post&lt;/a&gt; very helpful in resolving the problem, but it didn't quite fit the bill when I tried to do the same with a Raspbian Stretch instance recently. Here's what I did on Raspbian Stretch to set up &lt;code&gt;xrdp&lt;/code&gt; to provide the correct keycodes.&lt;/p&gt;&lt;p&gt;First, I checked the keboard layout was as expected: &lt;/p&gt;&lt;pre&gt;$ cat /etc/default/keyboard | grep LAYOUT&lt;br /&gt;XKBLAYOUT=&quot;gb&quot;&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;Then, I generated a keyboard mapping file using &lt;code&gt;xrdp-genkeymap&lt;/code&gt;:&lt;/p&gt;&lt;pre&gt;$ xrdp-genkeymap km-00000809.ini&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;This filename follows the current filename convention (under Jessie, it was &lt;code&gt;km-0809.ini&lt;/code&gt;). I then copied this file into the &lt;code&gt;xrdp&lt;/code&gt; configuration files directory:&lt;/p&gt;&lt;pre&gt;$ sudo cp km-00000809.ini /etc/xrdp&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;The next step was to edit the file &lt;code&gt;/etc/xrdp/xrdp_keyboard.ini&lt;/code&gt;, which appears to be new in Raspbian Stretch. Here are the lines I added, in an excerpt from the file:&lt;/p&gt;&lt;pre&gt;&lt;br /&gt;[default_rdp_layouts]&lt;br /&gt;rdp_layout_us=0x00000409&lt;br /&gt;rdp_layout_de=0x00000407&lt;br /&gt;&amp;lt; ... lines omitted ... &amp;gt;&lt;br /&gt;rdp_layout_br=0x00000416&lt;br /&gt;rdp_layout_pl=0x00000415&lt;br /&gt;rdp_layout_gb=0x00000809&lt;br /&gt;&lt;br /&gt;; &amp;lt;rdp layout name&amp;gt; = &amp;lt;X11 keyboard layout value&amp;gt;&lt;br /&gt;[default_layouts_map]&lt;br /&gt;rdp_layout_us=us&lt;br /&gt;rdp_layout_de=de&lt;br /&gt;&amp;lt; ... lines omitted ... &amp;gt;&lt;br /&gt;rdp_layout_br=br(abnt2)&lt;br /&gt;rdp_layout_pl=pl&lt;br /&gt;rdp_layout_gb=gb&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;In each case, I added the &lt;code&gt;rdp_layout_gb=&lt;/code&gt; lines. The final step was to restart the &lt;code&gt;xrdp&lt;/code&gt; service:&lt;/p&gt;&lt;pre&gt;$ sudo service xrdp restart&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;On reconnecting, I found that the keycodes were as they should have been, and I had access to the &lt;code&gt;£@'~#\|&lt;/code&gt; keys again in their expected places on the keyboard.&lt;/p&gt;</description>
+	<pubDate>Sat, 01 Sep 2018 10:54:12 +0000</pubDate>
+</item>
+<item>
+	<title>Codementor: Can I learn Python in a Month</title>
+	<guid>https://www.codementor.io/amargow1998/can-i-learn-python-in-a-month-myhy30z9t</guid>
+	<link>https://www.codementor.io/amargow1998/can-i-learn-python-in-a-month-myhy30z9t</link>
+	<description>The question is simple! Can you learn Python coding in a month? Before we get into that we should learn why Python!</description>
+	<pubDate>Sat, 01 Sep 2018 06:40:16 +0000</pubDate>
+</item>
+<item>
+	<title>Codementor: Top 25 Python Interview Questions Prepared by Experts</title>
+	<guid>https://www.codementor.io/amargow1998/top-25-python-interview-questions-prepared-by-experts-myhf3xdhq</guid>
+	<link>https://www.codementor.io/amargow1998/top-25-python-interview-questions-prepared-by-experts-myhf3xdhq</link>
+	<description>Top 25 Python Interview Questions and Answers Prepared by Experts. Reviews the Python questions and answers and be ready for interviews.Crack the Interview!</description>
+	<pubDate>Sat, 01 Sep 2018 06:28:37 +0000</pubDate>
+</item>
+<item>
+	<title>Codementor: Will Python Replace Java?</title>
+	<guid>https://www.codementor.io/amargow1998/will-python-replace-java-myfcm6miw</guid>
+	<link>https://www.codementor.io/amargow1998/will-python-replace-java-myfcm6miw</link>
+	<description>Will Python Replace Java? The reason for Python is becoming more popular and huge surge in number of requirement year on year is Python become a language of choice for all the current trending&amp;amp;hellip;</description>
+	<pubDate>Sat, 01 Sep 2018 05:11:12 +0000</pubDate>
+</item>
+<item>
+	<title>Rene Dudfield: pygame artist in residence grant</title>
+	<guid>http://renesd.blogspot.com/2018/08/pygame-artist-in-residence-grant.html</guid>
+	<link>http://renesd.blogspot.com/2018/08/pygame-artist-in-residence-grant.html</link>
+	<description>&lt;div dir=&quot;ltr&quot;&gt;&lt;div&gt;An &lt;span class=&quot;il&quot;&gt;artist&lt;/span&gt; residency usually works something like; a person spends some time in  either a gallery making something to present or in a music club doing a  weekly spot.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;table align=&quot;center&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;tr-caption-container&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://www.pygame.org/images/logo.png&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;126&quot; src=&quot;https://www.pygame.org/images/logo.png&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;tr-caption&quot;&gt;Artist in residence.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br /&gt;The first &quot;pygame artist in residence&quot; grant will be for a small amount of money (€512). It is for someone who is already doing stuff with &lt;a href=&quot;https://www.pygame.org/&quot;&gt;pygame&lt;/a&gt; or python in their arts practice. There will be a little thumbnail on the website linking towards an &lt;span class=&quot;il&quot;&gt;artist&lt;/span&gt; statement/patreon page/blog or some such. The residency won't be in a physical space. It lasts for a month, from October 1st - November 1st. At the end of the month the website 'exhibition' will take the form of a small update from the artist &lt;span class=&quot;ILfuVd yZ8quc&quot;&gt;— in whatever form that takes&lt;/span&gt;.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;If you'd like to apply(or nominate someone) please write something short with a link about the arts practice and how python or pygame is used in it.&lt;/div&gt;&lt;div&gt;&lt;b&gt;Email: residency@pygame.org&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Applications close: September 15th.&lt;/b&gt;&lt;br /&gt;&lt;b&gt;Announced: October 1st. &lt;/b&gt;&lt;br /&gt;&lt;b&gt;Amount: €512 paid by paypal.&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;hr /&gt;&lt;div&gt;Why  this? Art is awesome.&lt;br /&gt;&lt;br /&gt;Ok, there are other reasons... I feel the python world largely ignores the contributions that  the game development, graphics, education, music and the arts community provides  for python. People who are makers, musicicians, artists, teachers, and game devs have contributed  really major things to the python world. And the python website doesn't  even mention that art, or games are a thing. They don't exist apparently.&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;table align=&quot;center&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;tr-caption-container&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://pbs.twimg.com/media/DZ7b7lhW4AACqsX.jpg:large&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;168&quot; src=&quot;https://pbs.twimg.com/media/DZ7b7lhW4AACqsX.jpg:large&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;tr-caption&quot;&gt;According to python.org art does not exist&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;From Ada Lovelace the writer(and first programmer), to Steve Jobs who started out at Atari, to Bill gates the author of the first ever PC game, to Konrad Zuse the painter (who happened to also make the first digital computer) &lt;span class=&quot;ILfuVd yZ8quc&quot;&gt;— the arts and computers are intertwined&lt;/span&gt;. Python itself is named after a comedy group, and was started off within a &lt;a href=&quot;http://python-history.blogspot.com/2009/01/personal-history-part-1-cwi.html&quot;&gt;multimedia group at CWI&lt;/a&gt; after the author had worked on a programming system intended for teaching. Would python be the same without &lt;span&gt;import this &lt;/span&gt;( the zen of python) or as fun without &lt;span&gt;import antigravity&lt;/span&gt;?&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Art, education, music, making, multimedia, and games are important to 'computers' and to python. Sure, stop calling pypi the cheese shop (made by a damn fine baker and game developer) because it's too silly... but please don't erase the arts from existence. &lt;b&gt;The python arts community exists.&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 23:44:15 +0000</pubDate>
+</item>
+<item>
+	<title>Continuum Analytics Blog: Distributed Auto-ML with TPOT with Dask</title>
+	<guid>https://www.anaconda.com/blog/developer-blog/distributed-auto-ml-with-tpot-with-dask/</guid>
+	<link>https://www.anaconda.com/blog/developer-blog/distributed-auto-ml-with-tpot-with-dask/</link>
+	<description>&lt;p&gt;By Tom Augspurger This work is supported byAnaconda, Inc. This post describes a recent improvement made to TPOT. TPOT is an automated machine learning library for Python. It does some feature engineering and hyper-parameter optimization for you. TPOT uses genetic algorithms to evaluate which models are performing well and how to choose new models to try out in the next &amp;#8230;&lt;br /&gt;&lt;a class=&quot;view-article article-readmore inline-block text-fine-print&quot; href=&quot;https://www.anaconda.com/blog/developer-blog/distributed-auto-ml-with-tpot-with-dask/&quot;&gt;Read more &amp;#8594;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a rel=&quot;nofollow&quot; href=&quot;https://www.anaconda.com/blog/developer-blog/distributed-auto-ml-with-tpot-with-dask/&quot;&gt;Distributed Auto-ML with TPOT with Dask&lt;/a&gt; appeared first on &lt;a rel=&quot;nofollow&quot; href=&quot;https://www.anaconda.com&quot;&gt;Anaconda&lt;/a&gt;.&lt;/p&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 18:10:30 +0000</pubDate>
+</item>
+<item>
+	<title>Codementor: How to Dockerize a Celery App With Django And RabbitMQ</title>
+	<guid>https://www.codementor.io/bjoernstiel/how-to-dockerize-a-celery-app-with-django-and-rabbitmq-mxlh2wqqm</guid>
+	<link>https://www.codementor.io/bjoernstiel/how-to-dockerize-a-celery-app-with-django-and-rabbitmq-mxlh2wqqm</link>
+	<description>This post was originally published on Celery. The Missing Blog (https://www.python-celery.com/) on June 12th, 2018.
+All source code examples used in this blog post can be found on GitHub: ...</description>
+	<pubDate>Fri, 31 Aug 2018 11:29:46 +0000</pubDate>
+</item>
+<item>
+	<title>Made With Mu: Making Mu</title>
+	<guid>https://madewith.mu/mu/users/2018/08/31/making-mu.html</guid>
+	<link>https://madewith.mu/mu/users/2018/08/31/making-mu.html</link>
+	<description>&lt;p&gt;What does software development look like? Here’s a short video / visualisation
+of the creation of Mu as told via the interactions, interventions and changes
+by developers to Mu’s own source code
+&lt;a href=&quot;https://github.com/mu-editor/mu&quot;&gt;hosted on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;video-container&quot;&gt;
+
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;What exactly are you looking at?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The faces represent the developers.&lt;/li&gt;
+  &lt;li&gt;The multi-coloured blobs are the source code files that make up Mu.&lt;/li&gt;
+  &lt;li&gt;The lines between the source code blobs show how the files are organised
+together into directories.&lt;/li&gt;
+  &lt;li&gt;As time passes, developers can be seen to change, add and delete files as
+the project matures.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I used &lt;a href=&quot;http://gource.io/&quot;&gt;the &lt;code class=&quot;highlighter-rouge&quot;&gt;gource&lt;/code&gt; tool&lt;/a&gt; turn the commit history of Mu’s
+development on GitHub into a video. I added &lt;a href=&quot;http://freemusicarchive.org/music/Dexter_Britain/Creative_Commons_Volume_2/Wonderland_Instrumental&quot;&gt;some Creative Commons licensed music&lt;/a&gt;
+and the results look and sound quite effective. What I really like is how the
+video reflects the wide variety of people and types of contributions made to
+the source code for Mu. Together, we’re continuing to build the best editor
+we possibly can for beginner programmers and those who support them.&lt;/p&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 11:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>John Cook: How fast can you multiply matrices?</title>
+	<guid>https://www.johndcook.com/blog/2018/08/31/how-fast-can-you-multiply-matrices/</guid>
+	<link>https://www.johndcook.com/blog/2018/08/31/how-fast-can-you-multiply-matrices/</link>
+	<description>&lt;p&gt;Suppose you want to multiply two 2 × 2 matrices together. How many multiplication operations does it take? Apparently 8, and yet in 1969 Volker Strassen discovered that he could do it with 7 multiplications.&lt;/p&gt;
+&lt;h2&gt;Upper and lower bounds&lt;/h2&gt;
+&lt;p&gt;The obvious way to multiply two &lt;em&gt;n&lt;/em&gt; × &lt;em&gt;n&lt;/em&gt; matrices takes &lt;em&gt;n&lt;/em&gt;³ operations: each entry in the product is the inner product of a row from the first matrix and a column from the second matrix. That amounts to &lt;em&gt;n&lt;/em&gt;² inner products, each requiring &lt;em&gt;n&lt;/em&gt; multiplications.&lt;/p&gt;
+&lt;p&gt;You can multiply two square matrices with O(&lt;em&gt;n&lt;/em&gt;³) operations with the method described above, and it must take at least O(&lt;em&gt;n&lt;/em&gt;²) operations because the product depends on all of the 2&lt;em&gt;n&lt;/em&gt;² entries of the two matrices. Strassen&amp;#8217;s result suggests that the optimal algorithm for multiplying matrices takes O(&lt;em&gt;n&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt;) operations for some &lt;em&gt;k&lt;/em&gt; between 2 and 3. By applying Strassen&amp;#8217;s algorithm recursively to larger matrices you can get &lt;em&gt;k&lt;/em&gt; = log&lt;sub&gt;2&lt;/sub&gt; 7 = 2.807.&lt;/p&gt;
+&lt;p&gt;The best known value at the moment is &lt;em&gt;k&lt;/em&gt; = 2.3728639.&lt;/p&gt;
+&lt;h2&gt;Bounds on bounds&lt;/h2&gt;
+&lt;p&gt;Yesterday the blog Gödel&amp;#8217;s Lost Letter and P = NP posted an article &lt;a href=&quot;https://rjlipton.wordpress.com/2018/08/30/limits-on-matrix-multiplication/&quot;&gt;Limits on Matrix Multiplication&lt;/a&gt; where they report on recent developments for finding the smallest value of &lt;em&gt;k&lt;/em&gt;. A new paper doesn&amp;#8217;t report a new value of &lt;em&gt;k&lt;/em&gt;, but a limit on what current &lt;em&gt;approaches&lt;/em&gt; to the problem can prove. Maybe &lt;em&gt;k&lt;/em&gt; can equal 2, but there is a lower bound, strictly bigger than 2, on how small current approaches can go.&lt;/p&gt;
+&lt;h2&gt;Is this practical?&lt;/h2&gt;
+&lt;p&gt;When I first heard of Strassen&amp;#8217;s method, I was told it&amp;#8217;s a curious but impractical result. Strassen saved one multiplication at the expense of introducing several more addition operations.&lt;/p&gt;
+&lt;p&gt;According to the &lt;a href=&quot;https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm&quot;&gt;Wikipedia&lt;/a&gt; article on matrix multiplication, recursively applying Strassen&amp;#8217;s method can save time for &lt;em&gt;n&lt;/em&gt; &amp;gt; 100. But there&amp;#8217;s more to consider than counting operations. Strassen&amp;#8217;s method, and subsequent algorithms, are more complicated. They may not be more efficient in practice even if they use fewer operations because the operations may not vectorize well.&lt;/p&gt;
+&lt;p&gt;Wikipedia reports that Strassen&amp;#8217;s algorithm is not as numerically stable as the traditional approach, but this doesn&amp;#8217;t matter when working over &lt;a href=&quot;https://www.johndcook.com/blog/finite-fields/&quot;&gt;finite fields&lt;/a&gt; where arithmetic is exact.&lt;/p&gt;
+&lt;h2&gt;Strassen&amp;#8217;s method&lt;/h2&gt;
+&lt;p&gt;Let&amp;#8217;s look at just what Strassen&amp;#8217;s method does. We want to find the product of two matrices:&lt;/p&gt;
+&lt;p&gt;&lt;img class=&quot;aligncenter size-medium&quot; src=&quot;https://www.johndcook.com/twobytwo.svg&quot; alt=&quot;\begin{pmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}\end{pmatrix} \begin{pmatrix} b_{11} &amp; b_{12} \\ b_{21} &amp; b_{22}\end{pmatrix} = \begin{pmatrix} c_{11} &amp; c_{12} \\ c_{21} &amp; c_{22}\end{pmatrix}&quot; width=&quot;281&quot; height=&quot;43&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I started to spell out Strassen&amp;#8217;s method in LaTeX equations, but I thought it would be much better to write it out in code so I can be sure that I didn&amp;#8217;t make a mistake.&lt;/p&gt;
+&lt;p&gt;The following Python code randomly fills in the values of the a&amp;#8217;s and b&amp;#8217;s, computes the c&amp;#8217;s using the conventional method, then asserts that you can find these values from the q&amp;#8217;s computed from Strassen&amp;#8217;s method. Note there is one multiplication in each of the seven q&amp;#8217;s.&lt;/p&gt;
+&lt;pre&gt;    from random import randint
+    
+    # Fill matrices with random integer values
+    a11 = randint(0, 9)
+    a12 = randint(0, 9)
+    a21 = randint(0, 9)
+    a22 = randint(0, 9)
+    b11 = randint(0, 9)
+    b12 = randint(0, 9)
+    b21 = randint(0, 9)
+    b22 = randint(0, 9)
+    
+    # Traditional matrix multiplication
+    c11 = a11*b11 + a12*b21
+    c12 = a11*b12 + a12*b22
+    c21 = a21*b11 + a22*b21
+    c22 = a21*b12 + a22*b22
+    
+    # Strassen's method
+    q1 = (a11 + a22)*(b11 + b22)
+    q2 = (a21 + a22)*b11
+    q3 = a11*(b12 - b22)
+    q4 = a22 * (-b11 + b21)
+    q5 = (a11 + a12)*b22
+    q6 = (-a11 + a21)*(b11 + b12)
+    q7 = (a12 - a22)*(b21 + b22)
+    
+    assert(c11 == q1 + q4 - q5 + q7)
+    assert(c21 == q2 + q4)
+    assert(c12 == q3 + q5)
+    assert(c22 == q1 + q3 - q2 + q6)
+&lt;/pre&gt;
+&lt;p&gt;Since Strassen&amp;#8217;s method takes &lt;em&gt;more&lt;/em&gt; operations than the traditional method for multiplying 2 × 2 matrices, how can it take &lt;em&gt;fewer&lt;/em&gt; operations than the traditional method for multiplying large matrices?&lt;/p&gt;
+&lt;p&gt;When you apply Strassen&amp;#8217;s method to a matrix partitioned into submatrices, its multiplications become &lt;em&gt;matrix&lt;/em&gt; multiplications, and its additions become &lt;em&gt;matrix&lt;/em&gt; additions. These operations are O(&lt;em&gt;n&lt;/em&gt;&lt;sup&gt;2.807&lt;/sup&gt;) and O(&lt;em&gt;n&lt;/em&gt;&lt;sup&gt;2&lt;/sup&gt;) respectively, so saving multiplications at the cost of more additions is a win.&lt;/p&gt;
+&lt;h2&gt;Related articles&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li class=&quot;link&quot;&gt;&lt;a href=&quot;https://www.johndcook.com/blog/2018/06/14/low-rank-matrix-perturbations/&quot;&gt;Low-rank matrix peturbations&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;link&quot;&gt;&lt;a href=&quot;https://www.johndcook.com/blog/2015/12/07/linear-algebra/&quot;&gt;It all boils down to linear algebra&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;link&quot;&gt;&lt;a href=&quot;https://www.johndcook.com/blog/2018/05/05/svd/&quot;&gt;Computing SVD and pseudo-inverse&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 10:48:28 +0000</pubDate>
+</item>
+<item>
+	<title>py.CheckIO: Let the treasure hunt begin!</title>
+	<guid>http://py.checkio.org/blog/let-the-treasure-hunt-begin/</guid>
+	<link>http://py.checkio.org/blog/let-the-treasure-hunt-begin/</link>
+	<description>&lt;center&gt;
+&lt;img src=&quot;https://static.checkio.org/media/blog/share/emails/escher_500x200.png&quot; alt=&quot;Escher’s Island&quot; /&gt;
+&lt;/center&gt;
+
+
+&lt;p&gt;Perhaps you were wondering - why on CheckiO almost all of the missions are scattered and not related in any way? The thing is, we were actually looking for a fascinating story and, finally, we are ready to present it to you. Throughout the entire month of September, on the new Escher’s Island will appear new tasks, which are part of a long story about finding treasures and overcoming difficulties.&lt;/p&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 10:31:19 +0000</pubDate>
+</item>
+<item>
+	<title>EuroPython: EuroPython 2018: Videos for Thursday available</title>
+	<guid>https://blog.europython.eu/post/177582893492</guid>
+	<link>https://blog.europython.eu/post/177582893492</link>
+	<description>&lt;p&gt;We are pleased to announce the second batch of cut videos from EuroPython 2018 in Edinburgh, Scotland, UK.&lt;/p&gt;&lt;img src=&quot;https://78.media.tumblr.com/255a08cb29152f59a1203391afd5e64c/tumblr_inline_pdxaslTn8C1swlzyf_540.png&quot; alt=&quot;image&quot; /&gt;&lt;p class=&quot;center&quot;&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=scum5a_mqBc&amp;t=0s&amp;index=84&amp;list=PL8uoeex94UhFrNUV2m5MigREebUms39U5&quot; target=&quot;_blank&quot;&gt;EuroPython 2018 YouTube Playlist&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this batch, we have included all videos for Thursday, July 26 2018, the second conference day.&lt;/p&gt;&lt;p&gt;Next week we will publish videos for the final conference day. In total, we will have more than 130 videos available for you to watch.&lt;/p&gt;&lt;p&gt;All EuroPython videos, including the ones from previous conferences, are available on our &lt;a href=&quot;http://europython.tv/&quot; target=&quot;_blank&quot;&gt;EuroPython YouTube Channel&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Enjoy,&lt;br /&gt;–&lt;br /&gt;EuroPython 2018 Team&lt;br /&gt;&lt;a href=&quot;https://ep2018.europython.eu/&quot; target=&quot;_blank&quot;&gt;https://ep2018.europython.eu/&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://www.europython-society.org/&quot; target=&quot;_blank&quot;&gt;https://www.europython-society.org/&lt;/a&gt;
+&lt;/p&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 10:17:13 +0000</pubDate>
+</item>
+<item>
+	<title>Python Bytes: #93 Looking like there will be a PyBlazor!</title>
+	<guid>https://pythonbytes.fm/episodes/show/93/looking-like-there-will-be-a-pyblazor</guid>
+	<link>https://pythonbytes.fm/episodes/show/93/looking-like-there-will-be-a-pyblazor</link>
+	<pubDate>Fri, 31 Aug 2018 08:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Talk Python to Me: #175 Teaching Python to network engineers</title>
+	<guid>https://talkpython.fm/episodes/show/175/teaching-python-to-network-engineers</guid>
+	<link>https://talkpython.fm/episodes/show/175/teaching-python-to-network-engineers</link>
+	<description>The discipline of network engineering is quickly moving towards a world where it's as much programming and automation as it is packets and ports. Join me and Hank Preston to discuss what parts of Python are important for network engineers to learn.</description>
+	<pubDate>Fri, 31 Aug 2018 08:00:00 +0000</pubDate>
+</item>
+
+</channel>
+</rss>
