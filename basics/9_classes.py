@@ -7,11 +7,11 @@ class Bloc:
 
 if __name__ == '__main__':
     arena_residence = Bloc('nou')
-    print "Arena Residence e un bloc ",arena_residence.tip
+    print("Arena Residence e un bloc ",arena_residence.tip)
     arena_residence.nr_etaje=4
-    print "Are %d etaje" %arena_residence.nr_etaje
+    print("Are %d etaje" %arena_residence.nr_etaje)
 
     bloc_maria = Bloc("vechi")
-    print bloc_maria
+    print(bloc_maria)
 
 

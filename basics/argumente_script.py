@@ -16,7 +16,7 @@ from sys import argv
 #ValueError: need more than 1 value to unpack
 script,first,second,third = argv
 
-print "Program's name: ",script
-print "first arg: ",first
-print "second arg: ",second
-print "third arg: ",third
+print("Program's name: ",script)
+print("first arg: ",first)
+print("second arg: ",second)
+print("third arg: ",third)

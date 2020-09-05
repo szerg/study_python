@@ -1,5 +1,5 @@
 #!/usr/bin/python -tt
-# -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
 
 
 def main():
@@ -7,7 +7,7 @@ def main():
     names = """Graziano Pellè
 Sergio Agüero
 Cesc Fàbregas"""
-    print names
+    print(names)
 
 if __name__ == "__main__":
     main()
