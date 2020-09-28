@@ -18,7 +18,7 @@ if __name__ == '__main__':
 #    test_suite = ['1234','a13x0',None,'']
     test_suite = ['1234','a13x0','']
     for s in test_suite:
-        print sum_string(s)
+        print(sum_string(s))
     
 
 

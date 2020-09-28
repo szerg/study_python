@@ -5,5 +5,5 @@ import json
 if __name__ == '__main__':
     simple=['ana','are','mere']
     dick = {'Dostoievski':[('Demonii','Idiotul'),'rus'],'Twain':[('huck finn','Tom sawyer'),'american']}
-    print json.dumps(dick)
+    print(json.dumps(dick))
    

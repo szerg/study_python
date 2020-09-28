@@ -5,6 +5,6 @@ def get_legs():
     nr_legs+=1
     # nu poti accesa variabila aia pt ca e in alt scope; trebuie initializata mai intai
     # nr_legs=nr_legs+1
-    print nr_legs
+    print(nr_legs)
 
 get_legs()

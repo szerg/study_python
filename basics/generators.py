@@ -9,8 +9,8 @@ def get_city():
 
 
 c1 = get_city()
-print(next(c1))
-print(next(c1))
+print((next(c1)))
+print((next(c1)))
 
 # acum ideea e sa ai un lazy evaluation si sa faci economie de memorie
 # in ex de mai sus, cred ca generatorul nici macar nu e folosit corect; un ex mai corect ar fi urmatorul

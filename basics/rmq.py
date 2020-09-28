@@ -102,7 +102,7 @@ if __name__ =="__main__":
         logging
     )
 
-    print publisher.connected
+    print(publisher.connected)
     '''
     if publisher.connected:
         batch =[]
